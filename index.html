@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Git & GitHub Commands Cheat Sheet</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+<h1>Git & GitHub Commands Cheat Sheet</h1>
+<p>Quick reference for everyday Git and GitHub workflows</p>
+<input type="text" id="searchBox" placeholder="Search commands...">
+</header>
+
+<div class="container">
+<aside>
+<ul>
+<li><a href="#basic">Git Basics</a></li>
+<li><a href="#branch">Branching</a></li>
+<li><a href="#remote">Remote & Push</a></li>
+<li><a href="#advanced">Advanced</a></li>
+</ul>
+</aside>
+
+<main>
+<section id="basic" class="command-section">
+<h2>Git Basics</h2>
+
+<div class="card">
+<h3>Initialize Repository</h3>
+<code>git init</code>
+<button onclick="copyCmd('git init')">Copy</button>
+<p>Creates a new Git repository.</p>
+</div>
+
+<div class="card">
+<h3>Clone Repository</h3>
+<code>git clone URL</code>
+<button onclick="copyCmd('git clone URL')">Copy</button>
+<p>Downloads repository to local machine.</p>
+</div>
+
+<div class="card">
+<h3>Check Status</h3>
+<code>git status</code>
+<button onclick="copyCmd('git status')">Copy</button>
+<p>Shows tracked and modified files.</p>
+</div>
+
+<div class="card">
+<h3>Add Files</h3>
+<code>git add .</code>
+<button onclick="copyCmd('git add .')">Copy</button>
+<p>Stages all changes.</p>
+</html>
