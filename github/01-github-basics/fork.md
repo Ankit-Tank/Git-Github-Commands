@@ -83,5 +83,5 @@ Original Repo ← your changes proposed
 
 ## 🔗 Related Topics
 - [Pull Request](./pull-request.md)
-- [`git remote`](../../git/04-remote-workflows/remote.md)
-- [`git fetch`](../../git/04-remote-workflows/fetch.md)
+- [`git remote`](../../git/04-remote-workflow/remote.md)
+- [`git fetch`](../../git/04-remote-workflow/fetch.md)
