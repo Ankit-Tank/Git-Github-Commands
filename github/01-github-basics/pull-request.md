@@ -118,5 +118,5 @@ Closes #42
 ## 🔗 Related Topics
 - [Fork](./fork.md)
 - [Issues](./issues.md)
-- [`git merge`](./git/03-branching-and-merging/merge.md)
-- [`git rebase`](./git/03-branching-and-merging/rebase.md)
+- [`git merge`](../../git/03-branching-and-merging/merge.md)
+- [`git rebase`](../../git/03-branching-and-merging/rebase.md)
