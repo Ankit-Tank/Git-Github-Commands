@@ -8,7 +8,7 @@ This folder contains detailed explanations of GitHub-specific features and workf
 
 | # | Folder | Topics |
 |---|---|---|
-| 01 | [GitHub Basics](./01-github-basics/) | Fork, Pull Request, Issues, Stars & Watch |
+| 01 | [GitHub Basics](./01-github-basics/) | Fork, Pull Request, Issues, Stars & Watch, Profile README |
 | 02 | [GitHub CLI](./02-github-cli/) | gh auth, gh repo, gh pr, gh issue, gh gist |
 | 03 | [GitHub Actions](./03-github-actions/) | Overview, Workflow syntax, Common workflows |
 
