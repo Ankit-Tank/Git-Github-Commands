@@ -26,4 +26,4 @@ Commands for configuring Git and initializing or cloning repositories.
 
 ---
 
-> ⬅️ [Back to git/](../README.md) | ➡️ [02 — Staging & Committing](../02-staging-and-committing/)
+> ⬅️ [Back to git/](../overview.md) | ➡️ [02 — Staging & Committing](../02-staging-and-committing/)
