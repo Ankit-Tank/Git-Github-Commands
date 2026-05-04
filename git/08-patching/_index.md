@@ -36,4 +36,4 @@ git am patches/*.patch
 
 ---
 
-> ⬅️ [07 — Advanced](../07-advanced/) | ⬆️ [Back to git/](../README.md)
+> ⬅️ [07 — Advanced](../07-advanced/) | ⬆️ [Back to git/](../overview.MD)

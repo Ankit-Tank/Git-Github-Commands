@@ -36,4 +36,4 @@ See [COMPARISONS.md](../../../COMPARISONS.md#1-merge-vs-rebase)
 
 ---
 
-> ⬅️ [02 — Staging & Committing](../02-staging-and-committing/) | ➡️ [04 — Remote Workflows](../04-remote-workflows/)
+> ⬅️ [02 — Staging & Committing](../02-staging-and-committing/) | ➡️ [04 — Remote Workflows](../04-remote-workflow/)
