@@ -153,7 +153,7 @@ git clone https://github.com/Ankit-Tank/Git-Github-Commands.git
 cd Git-Github-Commands
 ```
 
-Navigate to any command file and read the explanation, syntax, and examples.
+Navigate to any command file and read the explanation, syntax, and examples
 
 ---
 
