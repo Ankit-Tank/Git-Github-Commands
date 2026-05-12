@@ -11,7 +11,7 @@
 
 ## 📌 What's Inside
 
-A complete reference guide for Git and GitHub commands — organized by category, from beginner basics to advanced workflows. Each command has its own dedicated file with syntax, real examples, comparisons, and common mistakes.
+A complete reference guide for Git and GitHub commands — organized by category, from beginner basics to advanced workflows. Each command has its own dedicated file with syntax, real examples, comparisons, and common mistakes
 
 ---
 
