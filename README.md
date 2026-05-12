@@ -5,7 +5,7 @@
 ![License](https://img.shields.io/badge/LICENSE-MIT-green?style=for-the-badge)
 ![MIT](https://img.shields.io/badge/MIT-yellow?style=for-the-badge)
 
-> Handy guide to Git and GitHub commands with practical usage examples
+> Handy guide to Git and GitHub commands with practical usage examples.
 
 ---
 
