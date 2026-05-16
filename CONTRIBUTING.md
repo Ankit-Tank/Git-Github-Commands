@@ -67,7 +67,6 @@ Then go to GitHub → open a Pull Request against `main`.
 
 Every command `.md` file must follow this structure:
 
-```markdown
 # git <command>
 
 ## 📌 What it does
@@ -101,7 +100,7 @@ git <command> --flag example
 
 ## 🔗 Related Commands
 - [`git related`](./related.md)
-```
+
 
 ---
 
