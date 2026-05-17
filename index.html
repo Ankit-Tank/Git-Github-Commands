@@ -1,332 +1,811 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Git & GitHub Commands Cheat Sheet</title>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Git & GitHub Commands - Complete Reference Guide</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- Header -->
+  <header>
+    <div class="badge">
+      <i class="fas fa-code-branch"></i> Git & GitHub Mastery
+    </div>
+    <h1>Git & GitHub Commands</h1>
+    <p>Complete reference guide with practical examples and use cases</p>
+    
+    <!-- Search -->
+    <div class="search-wrap">
+      <i class="fas fa-search search-icon"></i>
+      <input 
+        type="text" 
+        id="searchBox" 
+        class="search-input" 
+        placeholder="Search commands (e.g., commit, branch, push)..."
+      >
+    </div>
 
-<header>
-  <div class="badge">⬡ Git Reference</div>
-  <h1>Git & GitHub Commands</h1>
-  <p>Quick reference for everyday Git workflows — 32 commands across 8 categories</p>
-  <div class="search-wrap">
-    <span class="search-icon">⌕</span>
-    <input type="text" id="searchBox" placeholder="Search commands... (e.g. commit, branch, push)">
+    <!-- Stats -->
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-num">40+</div>
+        <div class="stat-label">Commands</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">8</div>
+        <div class="stat-label">Categories</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Essential</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Layout -->
+  <div class="layout">
+    <!-- Sidebar Navigation -->
+    <nav>
+      <div class="nav-title">📚 Categories</div>
+      <a href="#setup" class="nav-link active">
+        <i class="fas fa-wrench"></i> Setup
+        <span class="nav-count">4</span>
+      </a>
+      <a href="#staging" class="nav-link">
+        <i class="fas fa-inbox"></i> Staging & Commit
+        <span class="nav-count">6</span>
+      </a>
+      <a href="#branching" class="nav-link">
+        <i class="fas fa-code-branch"></i> Branching
+        <span class="nav-count">7</span>
+      </a>
+      <a href="#remote" class="nav-link">
+        <i class="fas fa-server"></i> Remote
+        <span class="nav-count">5</span>
+      </a>
+      <a href="#undoing" class="nav-link">
+        <i class="fas fa-undo"></i> Undoing
+        <span class="nav-count">5</span>
+      </a>
+      <a href="#inspection" class="nav-link">
+        <i class="fas fa-search"></i> Inspection
+        <span class="nav-count">5</span>
+      </a>
+      <a href="#advanced" class="nav-link">
+        <i class="fas fa-rocket"></i> Advanced
+        <span class="nav-count">5</span>
+      </a>
+      <a href="#patching" class="nav-link">
+        <i class="fas fa-patch"></i> Patching
+        <span class="nav-count">3</span>
+      </a>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+      <!-- No Results Message -->
+      <div id="noResults">
+        <div class="nr-icon">🔍</div>
+        <p>No commands found. Try a different search.</p>
+      </div>
+
+      <!-- 1. Setup Section -->
+      <section id="setup" class="section">
+        <div class="section-header">
+          <div class="section-icon" style="background: rgba(59,130,246,0.15); color: #3b82f6;">
+            <i class="fas fa-wrench"></i>
+          </div>
+          <div>
+            <div class="section-title">Setup & Configuration</div>
+            <div class="section-subtitle">Initialize repos and configure Git</div>
+          </div>
+        </div>
+        <div class="cards">
+          <div class="card" data-search="config configuration setup">
+            <div class="card-top">
+              <h3>git config</h3>
+              <span class="tag tag-blue">Essential</span>
+            </div>
+            <p class="card-desc">Set or view configuration variables like username, email, and editor.</p>
+            <div class="code-block">
+              <code>git config --global user.name "Your Name"</code>
+              <button class="copy-btn" onclick="copyCmd(this, 'git config --global user.name \"Your Name\"')">Copy</button>
+            </div>
+            <div class="code-block" style="margin-top: 8px;">
+              <code>git config --global user.email "email@example.com"</code>
+              <button class="copy-btn" onclick="copyCmd(this, 'git config --global user.email \"email@example.com\"')">Copy</button>
+            </div>
+            <p class="card-hint">💡 Use <code>--global</code> for all projects, <code>--local</code> for current repo only</p>
+          </div>
+
+          <div class="card" data-search="init initialize repository">
+            <div class="card-top">
+              <h3>git init</h3>
+              <span class="tag tag-blue">Essential</span>
+            </div>
+            <p class="card-desc">Initialize a new Git repository in the current directory.</p>
+            <div class="code-block">
+              <code>git init</code>
+              <button class="copy-btn" onclick="copyCmd(this, 'git init')">Copy</button>
+            </div>
+            <p class="card-hint">Creates a <code>.git</code> directory with repository structure</p>
+          </div>
+
+          <div class="card" data-search="clone copy repository remote">
+            <div class="card-top">
+              <h3>git clone</h3>
+              <span class="tag tag-blue">Essential</span>
+            </div>
+            <p class="card-desc">Clone a remote repository to your local machine.</p>
+            <div class="code-block">
+              <code>git clone https://github.com/user/repo.git</code>
+              <button class="copy-btn" onclick="copyCmd(this, 'git clone https://github.com/user/repo.git')">Copy</button>
+            </div>
+            <p class="card-hint">Creates a complete copy with full history</p>
+          </div>
+
+          <div class="card" data-search="help documentation">
+            <div class="card-top">
+              <h3>git help</h3>
+              <span class="tag tag-green">Utility</span>
+            </div>
+            <p class="card-desc">Display help information for Git commands.</p>
+            <div class="code-block">
+              <code>git help &lt;command&gt;</code>
+              <button class="copy-btn" onclick="copyCmd(this, 'git help <command>')">Copy</button>
+            </div>
+            <p class="card-hint">Example: <code>git help commit</code></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. Staging & Committing Section -->
+      <section id="staging" class="section">
+        <div class="section-header">
+          <div class="section-icon" style="background: rgba(16,185,129,0.15); color: #10b981;">
+            <i class="fas fa-inbox"></i>
+          </div>
+          <div>
+            <div class="section-title">Staging & Committing</div>
+            <div class="section-subtitle">Stage changes and create commits</div>
+          </div>
+        </div>
+        <div class="cards">
+          <div class="card" data-search="add stage files">
+            <div class="card-top">
+              <h3>git add</h3>
+              <span class="tag tag-green">Essential</span>
+            </div>
+            <p class="card-desc">Stage changes for the next commit.</p>
+            <div class="code-block">
+              <code>git add .</code>
+              <button class="copy-btn" onclick="copyCmd(this, 'git add .')">Copy</button>
+            </div>
+            <div class="code-block" style="margin-top: 8px;">
+              <code>git add filename.js</code>
+              <button class="copy-btn" onclick="copyCmd(this, 'git add filename.js')">Copy</button>
+            </div>
+            <p class="card-hint">Use <code>.</code> for all changes, or specify individual files</p>
+          </div>
+
+          <div class="card" data-search="commit save snapshot history">
+            <div class="card-top">
+              <h3>git commit</h3>
+              <span class="tag tag-green">Essential</span>
+            </div>
+            <p class="card-desc">Save staged changes with a descriptive message.</p>
+            <div class="code-block">
+              <code>git commit -m "Add new feature"</code>
+              <button class="copy-btn" onclick="copyCmd(this, 'git commit -m \"Add new feature\"')">Copy</button>
+            </div>
+            <div class="code-block" style="margin-top: 8px;">
+              <code>git commit -am "Update file"</code>
+              <button class="copy-btn" onclick="copyCmd(this, 'git commit -am \"Update file\"')">Copy</button>
+            </div>
+            <p class="card-hint">Flag <code>-a</code> skips staging for tracked files</p>
+          </div>
+
+          <div class="card" data-search="status working tree">
+            <div class="card-top">
+              <h3>git status</h3>
+              <span class="tag tag-amber">Utility</span>
+            </div>
+            <p class="card-desc">View the status of your working directory.</p>
+            <div class="code-block">
+              <code>git status</code>
+              <button class="copy-btn" onclick="copyCmd(this, 'git status')">Copy</button>
+            </div>
+            <p class="card-hint">Shows modified, staged, and untracked files</p>
+          </div>
+
+          <div class="card" data-search="diff changes differences">
+            <div class="card-top">
+              <h3>git diff</h3>
+              <span class="tag tag-amber">Utility</span>
+            </div>
+            <p class="card-desc">Show line-by-line changes between commits or working tree.</p>
+            <div class="code-block">
+              <code>git diff</code>
+              <button class="copy-btn" onclick="copyCmd(this, 'git diff')">Copy</button>
+            </div>
+            <div class="code-block" style="margin-top: 8px;">
+              <code>git diff --staged</code>
+              <button class="copy-btn" onclick="copyCmd(this, 'git diff --staged')">Copy</button>
+            </div>
+            <p class="card-hint">Use <code>--staged</code> to see staged changes</p>
+          </div>
+
+          <div class="card" data-search="mv move rename files">
+            <div class="card-top">
+              <h3>git mv</h3>
+              <span class="tag tag-amber">Utility</span>
+            </div>
+            <p class="card-desc">Move or rename tracked files.</p>
+            <div class="code-block">
+              <code>git mv old_name.js new_name.js</code>
+              <button class="copy-btn" onclick="copyCmd(this, 'git mv old_name.js new_name.js')">Copy</button>
+            </div>
+            <p class="card-hint">Automatically stages the rename operation</p>
+          </div>
+
+          <div class="card" data-search="rm remove delete files">
+            <div class="card-top">
+              <h3>git rm</h3>
+              <span class="tag tag-red">Caution</span>
+            </div>
+            <p class="card-desc">Remove files from tracking and working directory.</p>
+            <div class="code-block">
+              <code>git rm filename.js</code>
+              <button class="copy-btn" onclick="copyCmd(this, 'git rm filename.js')">Copy</button>
+            </div>
+            <div class="code-block" style="margin-top: 8px;">
+              <code>git rm --cached filename.js</code>
+              <button class="copy-btn" onclick="copyCmd(this, 'git rm --cached filename.js')">Copy</button>
+            </div>
+            <p class="card-hint">Use <code>--cached</code> to keep the file locally</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. Branching & Merging Section -->
+      <section id="branching" class="section">
+        <div class="section-header">
+          <div class="section-icon" style="background: rgba(139,92,246,0.15); color: #8b5cf6;">
+            <i class="fas fa-code-branch"></i>
+          </div>
+          <div>
+            <div class="section-title">Branching & Merging</div>
+            <div class="section-subtitle">Create and merge branches</div>
+          </div>
+        </div>
+        <div class="cards">
+          <div class="card" data-search="branch create list delete">
+            <div class="card-top">
+              <h3>git branch</h3>
+              <span class="tag tag-purple">Essential</span>
+            </div>
+            <p class="card-desc">Create, list, or delete branches.</p>
+            <div class="code-block">
+              <code>git branch</code>
+              <button class="copy-btn" onclick="copyCmd(this, 'git branch')">Copy</button>
+            </div>
+            <div class="code-block" style="margin-top: 8px;">
+              <code>git branch feature-name</code>
+              <button class="copy-btn" onclick="copyCmd(this, 'git branch feature-name')">Copy</button>
+            </div>
+            <div class="code-block" style="margin-top: 8px;">
+              <code>git branch -d branch-name</code>
+              <button class="copy-btn" onclick="copyCmd(this, 'git branch -d branch-name')">Copy</button>
+            </div>
+          </div>
+
+          <div class="card" data-search="checkout switch branches">
+            <div class="card-top">
+              <h3>git checkout</h3>
+              <span class="tag tag-purple">Essential</span>
+            </div>
+            <p class="card-desc">Switch to a different branch or restore files.</p>
+            <div class="code-block">
+              <code>git checkout branch-name</code>
+              <button class="copy-btn" onclick="copyCmd(this, 'git checkout branch-name')">Copy</button>
+            </div>
+            <div class="code-block" style="margin-top: 8px;">
+              <code>git checkout -b new-branch</code>
+              <button class="copy-btn" onclick="copyCmd(this, 'git checkout -b new-branch')">Copy</button>
+            </div>
+            <p class="card-hint">Flag <code>-b</code> creates and switches to a new branch</p>
+          </div>
+
+          <div class="card" data-search="switch branches modern">
+            <div class="card-top">
+              <h3>git switch</h3>
+              <span class="tag tag-cyan">Modern</span>
+            </div>
+            <p class="card-desc">Modern way to switch branches (Git 2.23+).</p>
+            <div class="code-block">
+              <code>git switch branch-name</code>
+              <button class="copy-btn" onclick="copyCmd(this, 'git switch branch-name')">Copy</button>
+            </div>
+            <div class="code-block" style="margin-top: 8px;">
+              <code>git switch -c new-branch</code>
+              <button class="copy-btn" onclick="copyCmd(this, 'git switch -c new-branch')">Copy</button>
+            </div>
+            <p class="card-hint">Clearer syntax than checkout</p>
+          </div>
+
+          <div class="card" data-search="merge combine branches">
+            <div class="card-top">
+              <h3>git merge</h3>
+              <span class="tag tag-purple">Essential</span>
+            </div>
+            <p class="card-desc">Combine two branches together.</p>
+            <div class="code-block">
+              <code>git merge feature-branch</code>
+              <button class="copy-btn" onclick="copyCmd(this, 'git merge feature-branch')">Copy</button>
+            </div>
+            <div class="code-block" style="margin-top: 8px;">
+              <code>git merge --no-ff feature-branch</code>
+              <button class="copy-btn" onclick="copyCmd(this, 'git merge --no-ff feature-branch')">Copy</button>
+            </div>
+            <p class="card-hint">Flag <code>--no-ff</code> creates a merge commit</p>
+          </div>
+
+          <div class="card" data-search="rebase history linear">
+            <div class="card-top">
+              <h3>git rebase</h3>
+              <span class="tag tag-purple">Advanced</span>
+            </div>
+            <p class="card-desc">Rewrite history to apply commits on top of another branch.</p>
+            <div class="code-block">
+              <code>git rebase main</code>
+              <button class="copy-btn" onclick="copyCmd(this, 'git rebase main')">Copy</button>
+            </div>
+            <div class="code-block" style="margin-top: 8px;">
+              <code>git rebase -i HEAD~3</code>
+              <button class="copy-btn" onclick="copyCmd(this, 'git rebase -i HEAD~3')">Copy</button>
+            </div>
+            <p class="card-hint">Interactive mode allows editing commits</p>
+          </div>
+
+          <div class="card" data-search="cherry-pick commit apply">
+            <div class="card-top">
+              <h3>git cherry-pick</h3>
+              <span class="tag tag-purple">Advanced</span>
+            </div>
+            <p class="card-desc">Apply a specific commit from another branch.</p>
+            <div class="code-block">
+              <code>git cherry-pick commit-hash</code>
+              <button class="copy-btn" onclick="copyCmd(this, 'git cherry-pick commit-hash')">Copy</button>
+            </div>
+            <p class="card-hint">Useful for backporting fixes</p>
+          </div>
+
+          <div class="card" data-search="tag release version">
+            <div class="card-top">
+              <h3>git tag</h3>
+              <span class="tag tag-amber">Release</span>
+            </div>
+            <p class="card-desc">Mark release points in the repository history.</p>
+            <div class="code-block">
+              <code>git tag v1.0.0</code>
+              <button class="copy-btn" onclick="copyCmd(this, 'git tag v1.0.0')">Copy</button>
+            </div>
+            <div class="code-block" style="margin-top: 8px;">
+              <code>git push origin v1.0.0</code>
+              <button class="copy-btn" onclick="copyCmd(this, 'git push origin v1.0.0')">Copy</button>
+            </div>
+            <p class="card-hint">Use semantic versioning: major.minor.patch</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. Remote Workflows Section -->
+      <section id="remote" class="section">
+        <div class="section-header">
+          <div class="section-icon" style="background: rgba(6,182,212,0.15); color: #06b6d4;">
+            <i class="fas fa-server"></i>
+          </div>
+          <div>
+            <div class="section-title">Remote Workflows</div>
+            <div class="section-subtitle">Collaborate with remote repositories</div>
+          </div>
+        </div>
+        <div class="cards">
+          <div class="card" data-search="remote manage connections">
+            <div class="card-top">
+              <h3>git remote</h3>
+              <span class="tag tag-cyan">Essential</span>
+            </div>
+            <p class="card-desc">Manage remote repository connections.</p>
+            <div class="code-block">
+              <code>git remote -v</code>
+              <button class="copy-btn" onclick="copyCmd(this, 'git remote -v')">Copy</button>
+            </div>
+            <div class="code-block" style="margin-top: 8px;">
+              <code>git remote add origin https://github.com/user/repo.git</code>
+              <button class="copy-btn" onclick="copyCmd(this, 'git remote add origin https://github.com/user/repo.git')">Copy</button>
+            </div>
+          </div>
+
+          <div class="card" data-search="push upload commits">
+            <div class="card-top">
+              <h3>git push</h3>
+              <span class="tag tag-cyan">Essential</span>
+            </div>
+            <p class="card-desc">Upload commits to a remote repository.</p>
+            <div class="code-block">
+              <code>git push origin main</code>
+              <button class="copy-btn" onclick="copyCmd(this, 'git push origin main')">Copy</button>
+            </div>
+            <div class="code-block" style="margin-top: 8px;">
+              <code>git push -u origin branch-name</code>
+              <button class="copy-btn" onclick="copyCmd(this, 'git push -u origin branch-name')">Copy</button>
+            </div>
+            <p class="card-hint">Flag <code>-u</code> sets upstream tracking</p>
+          </div>
+
+          <div class="card" data-search="pull download merge">
+            <div class="card-top">
+              <h3>git pull</h3>
+              <span class="tag tag-cyan">Essential</span>
+            </div>
+            <p class="card-desc">Download and merge changes from remote.</p>
+            <div class="code-block">
+              <code>git pull origin main</code>
+              <button class="copy-btn" onclick="copyCmd(this, 'git pull origin main')">Copy</button>
+            </div>
+            <div class="code-block" style="margin-top: 8px;">
+              <code>git pull --rebase</code>
+              <button class="copy-btn" onclick="copyCmd(this, 'git pull --rebase')">Copy</button>
+            </div>
+            <p class="card-hint">Combines fetch and merge operations</p>
+          </div>
+
+          <div class="card" data-search="fetch download changes">
+            <div class="card-top">
+              <h3>git fetch</h3>
+              <span class="tag tag-cyan">Safe</span>
+            </div>
+            <p class="card-desc">Download changes from remote without merging.</p>
+            <div class="code-block">
+              <code>git fetch origin</code>
+              <button class="copy-btn" onclick="copyCmd(this, 'git fetch origin')">Copy</button>
+            </div>
+            <p class="card-hint">Safe way to review changes before merging</p>
+          </div>
+
+          <div class="card" data-search="submodule nested repository">
+            <div class="card-top">
+              <h3>git submodule</h3>
+              <span class="tag tag-purple">Advanced</span>
+            </div>
+            <p class="card-desc">Manage nested repositories within a project.</p>
+            <div class="code-block">
+              <code>git submodule add URL path</code>
+              <button class="copy-btn" onclick="copyCmd(this, 'git submodule add URL path')">Copy</button>
+            </div>
+            <p class="card-hint">Useful for managing dependencies</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. Undoing Changes Section -->
+      <section id="undoing" class="section">
+        <div class="section-header">
+          <div class="section-icon" style="background: rgba(239,68,68,0.15); color: #ef4444;">
+            <i class="fas fa-undo"></i>
+          </div>
+          <div>
+            <div class="section-title">Undoing Changes</div>
+            <div class="section-subtitle">Undo commits and discard changes</div>
+          </div>
+        </div>
+        <div class="cards">
+          <div class="card" data-search="reset undo commits unstage">
+            <div class="card-top">
+              <h3>git reset</h3>
+              <span class="tag tag-red">Caution</span>
+            </div>
+            <p class="card-desc">Undo commits or unstage files.</p>
+            <div class="code-block">
+              <code>git reset HEAD~1</code>
+              <button class="copy-btn" onclick="copyCmd(this, 'git reset HEAD~1')">Copy</button>
+            </div>
+            <div class="code-block" style="margin-top: 8px;">
+              <code>git reset --soft HEAD~1</code>
+              <button class="copy-btn" onclick="copyCmd(this, 'git reset --soft HEAD~1')">Copy</button>
+            </div>
+            <p class="card-hint">Use <code>--soft</code> to keep changes staged</p>
+          </div>
+
+          <div class="card" data-search="revert undo safely">
+            <div class="card-top">
+              <h3>git revert</h3>
+              <span class="tag tag-amber">Safe</span>
+            </div>
+            <p class="card-desc">Safely undo a commit by creating a new one.</p>
+            <div class="code-block">
+              <code>git revert commit-hash</code>
+              <button class="copy-btn" onclick="copyCmd(this, 'git revert commit-hash')">Copy</button>
+            </div>
+            <p class="card-hint">Preferred for pushed commits</p>
+          </div>
+
+          <div class="card" data-search="restore discard changes">
+            <div class="card-top">
+              <h3>git restore</h3>
+              <span class="tag tag-cyan">Modern</span>
+            </div>
+            <p class="card-desc">Discard changes in working directory.</p>
+            <div class="code-block">
+              <code>git restore filename.js</code>
+              <button class="copy-btn" onclick="copyCmd(this, 'git restore filename.js')">Copy</button>
+            </div>
+            <div class="code-block" style="margin-top: 8px;">
+              <code>git restore --staged filename.js</code>
+              <button class="copy-btn" onclick="copyCmd(this, 'git restore --staged filename.js')">Copy</button>
+            </div>
+            <p class="card-hint">Modern replacement for checkout</p>
+          </div>
+
+          <div class="card" data-search="stash save work temporarily">
+            <div class="card-top">
+              <h3>git stash</h3>
+              <span class="tag tag-amber">Utility</span>
+            </div>
+            <p class="card-desc">Temporarily save uncommitted changes.</p>
+            <div class="code-block">
+              <code>git stash</code>
+              <button class="copy-btn" onclick="copyCmd(this, 'git stash')">Copy</button>
+            </div>
+            <div class="code-block" style="margin-top: 8px;">
+              <code>git stash pop</code>
+              <button class="copy-btn" onclick="copyCmd(this, 'git stash pop')">Copy</button>
+            </div>
+            <p class="card-hint">Great for switching branches quickly</p>
+          </div>
+
+          <div class="card" data-search="clean remove untracked">
+            <div class="card-top">
+              <h3>git clean</h3>
+              <span class="tag tag-red">Caution</span>
+            </div>
+            <p class="card-desc">Remove untracked files from working directory.</p>
+            <div class="code-block">
+              <code>git clean -fd</code>
+              <button class="copy-btn" onclick="copyCmd(this, 'git clean -fd')">Copy</button>
+            </div>
+            <p class="card-hint">Flags: <code>-f</code> force, <code>-d</code> directories</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. Inspection & History Section -->
+      <section id="inspection" class="section">
+        <div class="section-header">
+          <div class="section-icon" style="background: rgba(245,158,11,0.15); color: #f59e0b;">
+            <i class="fas fa-search"></i>
+          </div>
+          <div>
+            <div class="section-title">Inspection & History</div>
+            <div class="section-subtitle">View history and inspect changes</div>
+          </div>
+        </div>
+        <div class="cards">
+          <div class="card" data-search="log history commits">
+            <div class="card-top">
+              <h3>git log</h3>
+              <span class="tag tag-amber">Essential</span>
+            </div>
+            <p class="card-desc">View commit history.</p>
+            <div class="code-block">
+              <code>git log --oneline</code>
+              <button class="copy-btn" onclick="copyCmd(this, 'git log --oneline')">Copy</button>
+            </div>
+            <div class="code-block" style="margin-top: 8px;">
+              <code>git log --graph --all --decorate</code>
+              <button class="copy-btn" onclick="copyCmd(this, 'git log --graph --all --decorate')">Copy</button>
+            </div>
+            <p class="card-hint">Visualize commit graph with <code>--graph</code></p>
+          </div>
+
+          <div class="card" data-search="show commit details">
+            <div class="card-top">
+              <h3>git show</h3>
+              <span class="tag tag-amber">Utility</span>
+            </div>
+            <p class="card-desc">Display changes from a specific commit.</p>
+            <div class="code-block">
+              <code>git show commit-hash</code>
+              <button class="copy-btn" onclick="copyCmd(this, 'git show commit-hash')">Copy</button>
+            </div>
+            <p class="card-hint">Shows commit message and diff</p>
+          </div>
+
+          <div class="card" data-search="blame author line">
+            <div class="card-top">
+              <h3>git blame</h3>
+              <span class="tag tag-amber">Investigation</span>
+            </div>
+            <p class="card-desc">See who changed each line in a file.</p>
+            <div class="code-block">
+              <code>git blame filename.js</code>
+              <button class="copy-btn" onclick="copyCmd(this, 'git blame filename.js')">Copy</button>
+            </div>
+            <p class="card-hint">Useful for tracking down changes</p>
+          </div>
+
+          <div class="card" data-search="bisect bug binary search">
+            <div class="card-top">
+              <h3>git bisect</h3>
+              <span class="tag tag-purple">Advanced</span>
+            </div>
+            <p class="card-desc">Find the commit that introduced a bug.</p>
+            <div class="code-block">
+              <code>git bisect start</code>
+              <button class="copy-btn" onclick="copyCmd(this, 'git bisect start')">Copy</button>
+            </div>
+            <p class="card-hint">Binary search through commits</p>
+          </div>
+
+          <div class="card" data-search="shortlog summary author">
+            <div class="card-top">
+              <h3>git shortlog</h3>
+              <span class="tag tag-amber">Report</span>
+            </div>
+            <p class="card-desc">Summarize commit history by author.</p>
+            <div class="code-block">
+              <code>git shortlog -sn</code>
+              <button class="copy-btn" onclick="copyCmd(this, 'git shortlog -sn')">Copy</button>
+            </div>
+            <p class="card-hint">Useful for generating changelogs</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. Advanced Section -->
+      <section id="advanced" class="section">
+        <div class="section-header">
+          <div class="section-icon" style="background: rgba(139,92,246,0.15); color: #8b5cf6;">
+            <i class="fas fa-rocket"></i>
+          </div>
+          <div>
+            <div class="section-title">Advanced Operations</div>
+            <div class="section-subtitle">Power user commands</div>
+          </div>
+        </div>
+        <div class="cards">
+          <div class="card" data-search="reflog recover lost commits">
+            <div class="card-top">
+              <h3>git reflog</h3>
+              <span class="tag tag-purple">Recovery</span>
+            </div>
+            <p class="card-desc">Recover lost commits using the reference logs.</p>
+            <div class="code-block">
+              <code>git reflog</code>
+              <button class="copy-btn" onclick="copyCmd(this, 'git reflog')">Copy</button>
+            </div>
+            <p class="card-hint">Lifesaver for recovering lost work</p>
+          </div>
+
+          <div class="card" data-search="worktree multiple branches">
+            <div class="card-top">
+              <h3>git worktree</h3>
+              <span class="tag tag-purple">Advanced</span>
+            </div>
+            <p class="card-desc">Work on multiple branches simultaneously.</p>
+            <div class="code-block">
+              <code>git worktree add ../branch-name</code>
+              <button class="copy-btn" onclick="copyCmd(this, 'git worktree add ../branch-name')">Copy</button>
+            </div>
+            <p class="card-hint">Creates a separate working directory</p>
+          </div>
+
+          <div class="card" data-search="archive export zip tar">
+            <div class="card-top">
+              <h3>git archive</h3>
+              <span class="tag tag-amber">Export</span>
+            </div>
+            <p class="card-desc">Export repository as archive (zip or tar).</p>
+            <div class="code-block">
+              <code>git archive --format zip HEAD > repo.zip</code>
+              <button class="copy-btn" onclick="copyCmd(this, 'git archive --format zip HEAD > repo.zip')">Copy</button>
+            </div>
+            <p class="card-hint">Creates snapshot without .git folder</p>
+          </div>
+
+          <div class="card" data-search="gc garbage collection optimize">
+            <div class="card-top">
+              <h3>git gc</h3>
+              <span class="tag tag-green">Maintenance</span>
+            </div>
+            <p class="card-desc">Clean up and optimize repository.</p>
+            <div class="code-block">
+              <code>git gc</code>
+              <button class="copy-btn" onclick="copyCmd(this, 'git gc')">Copy</button>
+            </div>
+            <p class="card-hint">Reduces disk space and improves performance</p>
+          </div>
+
+          <div class="card" data-search="hooks automate pre-commit">
+            <div class="card-top">
+              <h3>git hooks</h3>
+              <span class="tag tag-purple">Automation</span>
+            </div>
+            <p class="card-desc">Automate actions on Git events.</p>
+            <div class="code-block">
+              <code>nano .git/hooks/pre-commit</code>
+              <button class="copy-btn" onclick="copyCmd(this, 'nano .git/hooks/pre-commit')">Copy</button>
+            </div>
+            <p class="card-hint">Located in <code>.git/hooks/</code> directory</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 8. Patching Section -->
+      <section id="patching" class="section">
+        <div class="section-header">
+          <div class="section-icon" style="background: rgba(6,182,212,0.15); color: #06b6d4;">
+            <i class="fas fa-patch"></i>
+          </div>
+          <div>
+            <div class="section-title">Patching</div>
+            <div class="section-subtitle">Create and apply patches</div>
+          </div>
+        </div>
+        <div class="cards">
+          <div class="card" data-search="apply patch file">
+            <div class="card-top">
+              <h3>git apply</h3>
+              <span class="tag tag-purple">Patch</span>
+            </div>
+            <p class="card-desc">Apply a patch file to your working directory.</p>
+            <div class="code-block">
+              <code>git apply patch-file.patch</code>
+              <button class="copy-btn" onclick="copyCmd(this, 'git apply patch-file.patch')">Copy</button>
+            </div>
+            <p class="card-hint">Does not commit changes</p>
+          </div>
+
+          <div class="card" data-search="format-patch create patches">
+            <div class="card-top">
+              <h3>git format-patch</h3>
+              <span class="tag tag-purple">Patch</span>
+            </div>
+            <p class="card-desc">Create patch files from commits.</p>
+            <div class="code-block">
+              <code>git format-patch -n main</code>
+              <button class="copy-btn" onclick="copyCmd(this, 'git format-patch -n main')">Copy</button>
+            </div>
+            <p class="card-hint">Useful for email-based contributions</p>
+          </div>
+
+          <div class="card" data-search="am apply mail patch author">
+            <div class="card-top">
+              <h3>git am</h3>
+              <span class="tag tag-purple">Patch</span>
+            </div>
+            <p class="card-desc">Apply patches preserving author information.</p>
+            <div class="code-block">
+              <code>git am patch-file.patch</code>
+              <button class="copy-btn" onclick="copyCmd(this, 'git am patch-file.patch')">Copy</button>
+            </div>
+            <p class="card-hint">Better than apply for maintaining history</p>
+          </div>
+        </div>
+      </section>
+    </main>
   </div>
-</header>
 
-<div class="stats">
-  <div class="stat"><div class="stat-num">8</div><div class="stat-label">Categories</div></div>
-  <div class="stat"><div class="stat-num">32</div><div class="stat-label">Commands</div></div>
-  <div class="stat"><div class="stat-num">100+</div><div class="stat-label">Examples</div></div>
-  <div class="stat"><div class="stat-num">1</div><div class="stat-label">Click Copy</div></div>
-</div>
+  <!-- Toast Notification -->
+  <div id="toast"></div>
 
-<div class="layout">
-  <nav id="sidebar">
-    <div class="nav-title">Categories</div>
-    <a href="#setup" class="active">⚙️ Setup <span class="nav-count">4</span></a>
-    <a href="#staging">📦 Staging <span class="nav-count">6</span></a>
-    <a href="#branching">🌿 Branching <span class="nav-count">7</span></a>
-    <a href="#remote">🌐 Remote <span class="nav-count">5</span></a>
-    <a href="#undoing">↩️ Undoing <span class="nav-count">5</span></a>
-    <a href="#history">🔍 History <span class="nav-count">5</span></a>
-    <a href="#advanced">⚡ Advanced <span class="nav-count">5</span></a>
-    <a href="#patching">🩹 Patching <span class="nav-count">3</span></a>
-  </nav>
-
-  <main>
-    <div id="noResults"><div class="nr-icon">🔍</div><p>No commands found. Try a different search term.</p></div>
-
-    <!-- 01 SETUP -->
-    <div class="section" id="setup">
-      <div class="section-header">
-        <div class="section-icon" style="background:rgba(59,130,246,0.15)">⚙️</div>
-        <div><div class="section-title">01 — Setup</div><div class="section-subtitle">Configure Git and initialize repositories</div></div>
-      </div>
-      <div class="cards">
-        <div class="card" data-search="git config username email editor alias setup global">
-          <div class="card-top"><h3>git config</h3><span class="tag tag-blue">setup</span></div>
-          <p class="card-desc">Set your username, email, default editor and aliases globally or per-repo.</p>
-          <div class="code-block"><code>git config --global user.name "Name"</code><button class="copy-btn" onclick="copyCmd(this,'git config --global user.name \"Name\"')">Copy</button></div>
-        </div>
-        <div class="card" data-search="git init initialize new repository local folder">
-          <div class="card-top"><h3>git init</h3><span class="tag tag-blue">setup</span></div>
-          <p class="card-desc">Initialize a new local Git repository in the current directory.</p>
-          <div class="code-block"><code>git init</code><button class="copy-btn" onclick="copyCmd(this,'git init')">Copy</button></div>
-        </div>
-        <div class="card" data-search="git clone copy remote repo download url">
-          <div class="card-top"><h3>git clone</h3><span class="tag tag-blue">setup</span></div>
-          <p class="card-desc">Copy a remote repository to your local machine.</p>
-          <div class="code-block"><code>git clone &lt;url&gt;</code><button class="copy-btn" onclick="copyCmd(this,'git clone <url>')">Copy</button></div>
-        </div>
-        <div class="card" data-search="git help manual documentation command reference">
-          <div class="card-top"><h3>git help</h3><span class="tag tag-blue">setup</span></div>
-          <p class="card-desc">Get detailed documentation for any Git command.</p>
-          <div class="code-block"><code>git help &lt;command&gt;</code><button class="copy-btn" onclick="copyCmd(this,'git help <command>')">Copy</button></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 02 STAGING -->
-    <div class="section" id="staging">
-      <div class="section-header">
-        <div class="section-icon" style="background:rgba(16,185,129,0.15)">📦</div>
-        <div><div class="section-title">02 — Staging & Committing</div><div class="section-subtitle">Track, stage and save changes</div></div>
-      </div>
-      <div class="cards">
-        <div class="card" data-search="git add stage changes files all dot">
-          <div class="card-top"><h3>git add</h3><span class="tag tag-green">staging</span></div>
-          <p class="card-desc">Stage changes to be included in the next commit.</p>
-          <div class="code-block"><code>git add .</code><button class="copy-btn" onclick="copyCmd(this,'git add .')">Copy</button></div>
-        </div>
-        <div class="card" data-search="git commit save snapshot message history record">
-          <div class="card-top"><h3>git commit</h3><span class="tag tag-green">staging</span></div>
-          <p class="card-desc">Save a snapshot of staged changes to the repository history.</p>
-          <div class="code-block"><code>git commit -m "message"</code><button class="copy-btn" onclick="copyCmd(this,'git commit -m \"message\"')">Copy</button></div>
-        </div>
-        <div class="card" data-search="git status check working tree modified untracked files">
-          <div class="card-top"><h3>git status</h3><span class="tag tag-green">staging</span></div>
-          <p class="card-desc">Show the state of the working directory and staging area.</p>
-          <div class="code-block"><code>git status</code><button class="copy-btn" onclick="copyCmd(this,'git status')">Copy</button></div>
-        </div>
-        <div class="card" data-search="git diff line changes differences comparison between">
-          <div class="card-top"><h3>git diff</h3><span class="tag tag-green">staging</span></div>
-          <p class="card-desc">Show line-by-line differences between files or commits.</p>
-          <div class="code-block"><code>git diff</code><button class="copy-btn" onclick="copyCmd(this,'git diff')">Copy</button></div>
-        </div>
-        <div class="card" data-search="git mv move rename tracked file stage">
-          <div class="card-top"><h3>git mv</h3><span class="tag tag-green">staging</span></div>
-          <p class="card-desc">Move or rename a tracked file and stage the change automatically.</p>
-          <div class="code-block"><code>git mv old.txt new.txt</code><button class="copy-btn" onclick="copyCmd(this,'git mv old.txt new.txt')">Copy</button></div>
-        </div>
-        <div class="card" data-search="git rm remove delete untrack files staged">
-          <div class="card-top"><h3>git rm</h3><span class="tag tag-green">staging</span></div>
-          <p class="card-desc">Remove a file from the repository and stage the deletion.</p>
-          <div class="code-block"><code>git rm &lt;file&gt;</code><button class="copy-btn" onclick="copyCmd(this,'git rm <file>')">Copy</button></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 03 BRANCHING -->
-    <div class="section" id="branching">
-      <div class="section-header">
-        <div class="section-icon" style="background:rgba(139,92,246,0.15)">🌿</div>
-        <div><div class="section-title">03 — Branching & Merging</div><div class="section-subtitle">Create, switch, merge and manage branches</div></div>
-      </div>
-      <div class="cards">
-        <div class="card" data-search="git branch create list delete branches name">
-          <div class="card-top"><h3>git branch</h3><span class="tag tag-purple">branching</span></div>
-          <p class="card-desc">Create, list, rename and delete branches in the repository.</p>
-          <div class="code-block"><code>git branch &lt;name&gt;</code><button class="copy-btn" onclick="copyCmd(this,'git branch <name>')">Copy</button></div>
-        </div>
-        <div class="card" data-search="git checkout switch branch restore files legacy">
-          <div class="card-top"><h3>git checkout</h3><span class="tag tag-purple">branching</span></div>
-          <p class="card-desc">Switch branches or restore working tree files to a previous state.</p>
-          <div class="code-block"><code>git checkout &lt;branch&gt;</code><button class="copy-btn" onclick="copyCmd(this,'git checkout <branch>')">Copy</button></div>
-        </div>
-        <div class="card" data-search="git switch modern branch switch safe 2.23">
-          <div class="card-top"><h3>git switch</h3><span class="tag tag-purple">branching</span></div>
-          <p class="card-desc">Modern, safer way to switch between branches (Git 2.23+).</p>
-          <div class="code-block"><code>git switch &lt;branch&gt;</code><button class="copy-btn" onclick="copyCmd(this,'git switch <branch>')">Copy</button></div>
-        </div>
-        <div class="card" data-search="git merge combine branches integrate join">
-          <div class="card-top"><h3>git merge</h3><span class="tag tag-purple">branching</span></div>
-          <p class="card-desc">Combine changes from another branch into the current branch.</p>
-          <div class="code-block"><code>git merge &lt;branch&gt;</code><button class="copy-btn" onclick="copyCmd(this,'git merge <branch>')">Copy</button></div>
-        </div>
-        <div class="card" data-search="git rebase rewrite history linear clean replay">
-          <div class="card-top"><h3>git rebase</h3><span class="tag tag-amber">advanced</span></div>
-          <p class="card-desc">Reapply commits on top of another base, creating a linear history.</p>
-          <div class="code-block"><code>git rebase &lt;branch&gt;</code><button class="copy-btn" onclick="copyCmd(this,'git rebase <branch>')">Copy</button></div>
-        </div>
-        <div class="card" data-search="git cherry-pick apply specific commit hash">
-          <div class="card-top"><h3>git cherry-pick</h3><span class="tag tag-amber">advanced</span></div>
-          <p class="card-desc">Apply a specific commit from another branch onto the current branch.</p>
-          <div class="code-block"><code>git cherry-pick &lt;hash&gt;</code><button class="copy-btn" onclick="copyCmd(this,'git cherry-pick <hash>')">Copy</button></div>
-        </div>
-        <div class="card" data-search="git tag release version mark label milestone">
-          <div class="card-top"><h3>git tag</h3><span class="tag tag-purple">branching</span></div>
-          <p class="card-desc">Mark specific commits as release versions or important milestones.</p>
-          <div class="code-block"><code>git tag v1.0.0</code><button class="copy-btn" onclick="copyCmd(this,'git tag v1.0.0')">Copy</button></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 04 REMOTE -->
-    <div class="section" id="remote">
-      <div class="section-header">
-        <div class="section-icon" style="background:rgba(6,182,212,0.15)">🌐</div>
-        <div><div class="section-title">04 — Remote Workflows</div><div class="section-subtitle">Connect and sync with remote repositories</div></div>
-      </div>
-      <div class="cards">
-        <div class="card" data-search="git remote add origin manage connections url">
-          <div class="card-top"><h3>git remote</h3><span class="tag tag-cyan">remote</span></div>
-          <p class="card-desc">Manage connections to remote repositories (add, remove, rename).</p>
-          <div class="code-block"><code>git remote add origin &lt;url&gt;</code><button class="copy-btn" onclick="copyCmd(this,'git remote add origin <url>')">Copy</button></div>
-        </div>
-        <div class="card" data-search="git push upload commits remote publish origin main">
-          <div class="card-top"><h3>git push</h3><span class="tag tag-cyan">remote</span></div>
-          <p class="card-desc">Upload local commits and branches to a remote repository.</p>
-          <div class="code-block"><code>git push origin main</code><button class="copy-btn" onclick="copyCmd(this,'git push origin main')">Copy</button></div>
-        </div>
-        <div class="card" data-search="git pull download merge fetch integrate remote origin">
-          <div class="card-top"><h3>git pull</h3><span class="tag tag-cyan">remote</span></div>
-          <p class="card-desc">Fetch and automatically merge changes from the remote branch.</p>
-          <div class="code-block"><code>git pull origin main</code><button class="copy-btn" onclick="copyCmd(this,'git pull origin main')">Copy</button></div>
-        </div>
-        <div class="card" data-search="git fetch download remote no merge safe">
-          <div class="card-top"><h3>git fetch</h3><span class="tag tag-cyan">remote</span></div>
-          <p class="card-desc">Download changes from remote without merging into your branch.</p>
-          <div class="code-block"><code>git fetch origin</code><button class="copy-btn" onclick="copyCmd(this,'git fetch origin')">Copy</button></div>
-        </div>
-        <div class="card" data-search="git submodule nested repo module dependency project">
-          <div class="card-top"><h3>git submodule</h3><span class="tag tag-amber">advanced</span></div>
-          <p class="card-desc">Manage nested repositories inside a parent repository.</p>
-          <div class="code-block"><code>git submodule add &lt;url&gt;</code><button class="copy-btn" onclick="copyCmd(this,'git submodule add <url>')">Copy</button></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 05 UNDOING -->
-    <div class="section" id="undoing">
-      <div class="section-header">
-        <div class="section-icon" style="background:rgba(239,68,68,0.15)">↩️</div>
-        <div><div class="section-title">05 — Undoing Changes</div><div class="section-subtitle">Reverse, reset and recover mistakes</div></div>
-      </div>
-      <div class="cards">
-        <div class="card" data-search="git reset undo unstage soft hard mixed commit head">
-          <div class="card-top"><h3>git reset</h3><span class="tag tag-red">undo</span></div>
-          <p class="card-desc">Undo commits or unstage files. Use --soft, --mixed or --hard carefully.</p>
-          <div class="code-block"><code>git reset --soft HEAD~1</code><button class="copy-btn" onclick="copyCmd(this,'git reset --soft HEAD~1')">Copy</button></div>
-        </div>
-        <div class="card" data-search="git revert safe undo pushed commit new reverse">
-          <div class="card-top"><h3>git revert</h3><span class="tag tag-green">safe</span></div>
-          <p class="card-desc">Safely undo a pushed commit by creating a new reverse commit.</p>
-          <div class="code-block"><code>git revert &lt;hash&gt;</code><button class="copy-btn" onclick="copyCmd(this,'git revert <hash>')">Copy</button></div>
-        </div>
-        <div class="card" data-search="git restore discard working directory changes file unstage">
-          <div class="card-top"><h3>git restore</h3><span class="tag tag-red">undo</span></div>
-          <p class="card-desc">Discard changes in the working directory or unstage a file.</p>
-          <div class="code-block"><code>git restore &lt;file&gt;</code><button class="copy-btn" onclick="copyCmd(this,'git restore <file>')">Copy</button></div>
-        </div>
-        <div class="card" data-search="git stash save temporarily uncommitted work pop apply">
-          <div class="card-top"><h3>git stash</h3><span class="tag tag-amber">utility</span></div>
-          <p class="card-desc">Temporarily save uncommitted changes to work on something else.</p>
-          <div class="code-block"><code>git stash</code><button class="copy-btn" onclick="copyCmd(this,'git stash')">Copy</button></div>
-        </div>
-        <div class="card" data-search="git clean remove untracked files directory force">
-          <div class="card-top"><h3>git clean</h3><span class="tag tag-red">undo</span></div>
-          <p class="card-desc">Remove untracked files and directories from the working tree.</p>
-          <div class="code-block"><code>git clean -fd</code><button class="copy-btn" onclick="copyCmd(this,'git clean -fd')">Copy</button></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 06 HISTORY -->
-    <div class="section" id="history">
-      <div class="section-header">
-        <div class="section-icon" style="background:rgba(245,158,11,0.15)">🔍</div>
-        <div><div class="section-title">06 — Inspection & History</div><div class="section-subtitle">Explore logs, blame and find bugs</div></div>
-      </div>
-      <div class="cards">
-        <div class="card" data-search="git log view commit history list oneline graph">
-          <div class="card-top"><h3>git log</h3><span class="tag tag-amber">history</span></div>
-          <p class="card-desc">View the full commit history with author, date and message.</p>
-          <div class="code-block"><code>git log --oneline --graph</code><button class="copy-btn" onclick="copyCmd(this,'git log --oneline --graph')">Copy</button></div>
-        </div>
-        <div class="card" data-search="git show inspect commit details diff specific">
-          <div class="card-top"><h3>git show</h3><span class="tag tag-amber">history</span></div>
-          <p class="card-desc">Inspect the details and changes introduced by a specific commit.</p>
-          <div class="code-block"><code>git show &lt;hash&gt;</code><button class="copy-btn" onclick="copyCmd(this,'git show <hash>')">Copy</button></div>
-        </div>
-        <div class="card" data-search="git blame who changed line author when file">
-          <div class="card-top"><h3>git blame</h3><span class="tag tag-amber">history</span></div>
-          <p class="card-desc">Show who last modified each line of a file and when.</p>
-          <div class="code-block"><code>git blame &lt;file&gt;</code><button class="copy-btn" onclick="copyCmd(this,'git blame <file>')">Copy</button></div>
-        </div>
-        <div class="card" data-search="git bisect find bug commit binary search good bad">
-          <div class="card-top"><h3>git bisect</h3><span class="tag tag-amber">history</span></div>
-          <p class="card-desc">Use binary search to find the commit that introduced a bug.</p>
-          <div class="code-block"><code>git bisect start</code><button class="copy-btn" onclick="copyCmd(this,'git bisect start')">Copy</button></div>
-        </div>
-        <div class="card" data-search="git shortlog summary author contributions count stat">
-          <div class="card-top"><h3>git shortlog</h3><span class="tag tag-amber">history</span></div>
-          <p class="card-desc">Show a summarized commit history grouped by author and count.</p>
-          <div class="code-block"><code>git shortlog -sn</code><button class="copy-btn" onclick="copyCmd(this,'git shortlog -sn')">Copy</button></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 07 ADVANCED -->
-    <div class="section" id="advanced">
-      <div class="section-header">
-        <div class="section-icon" style="background:rgba(139,92,246,0.15)">⚡</div>
-        <div><div class="section-title">07 — Advanced</div><div class="section-subtitle">Power tools for complex workflows</div></div>
-      </div>
-      <div class="cards">
-        <div class="card" data-search="git reflog recover lost commit history reference log">
-          <div class="card-top"><h3>git reflog</h3><span class="tag tag-purple">advanced</span></div>
-          <p class="card-desc">View a log of all HEAD movements to recover lost commits.</p>
-          <div class="code-block"><code>git reflog</code><button class="copy-btn" onclick="copyCmd(this,'git reflog')">Copy</button></div>
-        </div>
-        <div class="card" data-search="git worktree multiple branches simultaneously directory checkout">
-          <div class="card-top"><h3>git worktree</h3><span class="tag tag-purple">advanced</span></div>
-          <p class="card-desc">Check out multiple branches simultaneously in separate directories.</p>
-          <div class="code-block"><code>git worktree add &lt;path&gt; &lt;branch&gt;</code><button class="copy-btn" onclick="copyCmd(this,'git worktree add <path> <branch>')">Copy</button></div>
-        </div>
-        <div class="card" data-search="git archive export zip tar download snapshot">
-          <div class="card-top"><h3>git archive</h3><span class="tag tag-purple">advanced</span></div>
-          <p class="card-desc">Export the repository contents as a zip or tar archive file.</p>
-          <div class="code-block"><code>git archive --format=zip HEAD &gt; out.zip</code><button class="copy-btn" onclick="copyCmd(this,'git archive --format=zip HEAD > out.zip')">Copy</button></div>
-        </div>
-        <div class="card" data-search="git gc garbage collection optimize cleanup prune">
-          <div class="card-top"><h3>git gc</h3><span class="tag tag-purple">advanced</span></div>
-          <p class="card-desc">Run garbage collection to clean up and optimize the repository.</p>
-          <div class="code-block"><code>git gc --prune=now</code><button class="copy-btn" onclick="copyCmd(this,'git gc --prune=now')">Copy</button></div>
-        </div>
-        <div class="card" data-search="git hooks automate scripts events pre commit push trigger">
-          <div class="card-top"><h3>git hooks</h3><span class="tag tag-purple">advanced</span></div>
-          <p class="card-desc">Scripts that run automatically on Git events like commit or push.</p>
-          <div class="code-block"><code>.git/hooks/pre-commit</code><button class="copy-btn" onclick="copyCmd(this,'.git/hooks/pre-commit')">Copy</button></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 08 PATCHING -->
-    <div class="section" id="patching">
-      <div class="section-header">
-        <div class="section-icon" style="background:rgba(16,185,129,0.15)">🩹</div>
-        <div><div class="section-title">08 — Patching</div><div class="section-subtitle">Create and apply patch files</div></div>
-      </div>
-      <div class="cards">
-        <div class="card" data-search="git apply patch file diff changes">
-          <div class="card-top"><h3>git apply</h3><span class="tag tag-green">patching</span></div>
-          <p class="card-desc">Apply a patch file to the working directory or index.</p>
-          <div class="code-block"><code>git apply &lt;patch-file&gt;</code><button class="copy-btn" onclick="copyCmd(this,'git apply <patch-file>')">Copy</button></div>
-        </div>
-        <div class="card" data-search="git format-patch create patch file commits export share">
-          <div class="card-top"><h3>git format-patch</h3><span class="tag tag-green">patching</span></div>
-          <p class="card-desc">Create patch files from one or more commits for sharing via email.</p>
-          <div class="code-block"><code>git format-patch HEAD~1</code><button class="copy-btn" onclick="copyCmd(this,'git format-patch HEAD~1')">Copy</button></div>
-        </div>
-        <div class="card" data-search="git am apply patch preserve author email mailbox">
-          <div class="card-top"><h3>git am</h3><span class="tag tag-green">patching</span></div>
-          <p class="card-desc">Apply a patch while preserving the original author information.</p>
-          <div class="code-block"><code>git am &lt;patch-file&gt;</code><button class="copy-btn" onclick="copyCmd(this,'git am <patch-file>')">Copy</button></div>
-        </div>
-      </div>
-    </div>
-
-  </main>
-</div>
-
-<div id="toast">✓ Copied!</div>
-
-<script src="script.js"></script>
+  <!-- Scripts -->
+  <script src="script.js"></script>
 </body>
 </html>
