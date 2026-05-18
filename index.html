@@ -1,1113 +1,633 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GIT.DEV — Command Reference</title>
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230d0d0d'/%3E%3Crect x='1' y='1' width='62' height='62' rx='11' fill='none' stroke='%2300ff88' stroke-width='2'/%3E%3Ctext x='50%25' y='38' font-family='monospace' font-size='22' font-weight='900' fill='%2300ff88' text-anchor='middle' letter-spacing='-1'%3EGIT%3C/text%3E%3Cline x1='12' y1='44' x2='52' y2='44' stroke='%2300ff88' stroke-width='1.5' opacity='0.4'/%3E%3Ctext x='50%25' y='54' font-family='monospace' font-size='9' fill='%2300ff88' text-anchor='middle' opacity='0.6' letter-spacing='2'%3E.DEV%3C/text%3E%3C/svg%3E">
-<link rel="shortcut icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230d0d0d'/%3E%3Crect x='1' y='1' width='62' height='62' rx='11' fill='none' stroke='%2300ff88' stroke-width='2'/%3E%3Ctext x='50%25' y='38' font-family='monospace' font-size='22' font-weight='900' fill='%2300ff88' text-anchor='middle' letter-spacing='-1'%3EGIT%3C/text%3E%3Cline x1='12' y1='44' x2='52' y2='44' stroke='%2300ff88' stroke-width='1.5' opacity='0.4'/%3E%3Ctext x='50%25' y='54' font-family='monospace' font-size='9' fill='%2300ff88' text-anchor='middle' opacity='0.6' letter-spacing='2'%3E.DEV%3C/text%3E%3C/svg%3E">
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Space+Grotesk:wght@400;600;700;800&display=swap" rel="stylesheet">
-<style>
-/* ─── RESET ─────────────────────────────────────────────── */
-*{margin:0;padding:0;box-sizing:border-box;}
-:root{
-  --bg:#0d0d0d;
-  --bg2:#111111;
-  --bg3:#161616;
-  --border:#1e1e1e;
-  --border2:#2a2a2a;
-  --green:#00ff88;
-  --cyan:#00e5ff;
-  --pink:#ff2d78;
-  --yellow:#ffe600;
-  --purple:#b87fff;
-  --orange:#ff6b35;
-  --text:#f0f0f0;
-  --muted:#555;
-  --muted2:#333;
-  --mono:'JetBrains Mono',monospace;
-  --sans:'Space Grotesk',sans-serif;
-}
-html{scroll-behavior:smooth;}
-body{
-  background:var(--bg);
-  color:var(--text);
-  font-family:var(--sans);
-  min-height:100vh;
-  overflow-x:hidden;
-}
-
-/* ─── CANVAS BG ──────────────────────────────────────────── */
-#bgCanvas{
-  position:fixed;top:0;left:0;
-  width:100%;height:100%;
-  z-index:0;pointer-events:none;
-  opacity:0.4;
-}
-
-/* ─── NOISE OVERLAY ──────────────────────────────────────── */
-body::after{
-  content:'';
-  position:fixed;inset:0;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-  opacity:0.03;pointer-events:none;z-index:1;
-}
-
-/* ─── LAYOUT ─────────────────────────────────────────────── */
-.layout{
-  display:flex;
-  position:relative;z-index:2;
-  min-height:100vh;
-}
-
-/* ─── SIDEBAR ────────────────────────────────────────────── */
-.sidebar{
-  width:260px;flex-shrink:0;
-  background:var(--bg2);
-  border-right:1px solid var(--border);
-  display:flex;flex-direction:column;
-  position:sticky;top:0;height:100vh;
-  overflow-y:auto;
-}
-.sidebar::-webkit-scrollbar{width:3px;}
-.sidebar::-webkit-scrollbar-thumb{background:var(--muted2);}
-
-.logo{
-  padding:28px 22px 22px;
-  border-bottom:1px solid var(--border);
-}
-.logo-text{
-  font-family:var(--mono);
-  font-size:20px;font-weight:800;
-  letter-spacing:2px;
-}
-.logo-text span{color:var(--green);}
-.logo-sub{
-  font-size:11px;color:var(--muted);
-  font-family:var(--mono);
-  margin-top:4px;letter-spacing:1px;
-}
-
-.search-box{
-  margin:16px;
-  background:var(--bg3);
-  border:1px solid var(--border2);
-  border-radius:6px;
-  display:flex;align-items:center;gap:8px;
-  padding:10px 14px;
-  transition:border-color .2s;
-}
-.search-box:focus-within{border-color:var(--green);}
-.search-box span{color:var(--green);font-size:13px;font-family:var(--mono);}
-.search-box input{
-  background:none;border:none;outline:none;
-  color:var(--text);font-family:var(--mono);
-  font-size:13px;width:100%;
-}
-.search-box input::placeholder{color:var(--muted);}
-
-.nav-section-label{
-  padding:12px 22px 6px;
-  font-size:10px;letter-spacing:2px;
-  color:var(--muted);font-family:var(--mono);
-  text-transform:uppercase;
-}
-
-.nav-item{
-  display:flex;align-items:center;
-  padding:10px 22px;
-  text-decoration:none;
-  font-size:13px;font-weight:600;
-  color:#888;
-  transition:all .15s;
-  border-left:2px solid transparent;
-  gap:10px;
-  cursor:pointer;
-}
-.nav-item:hover{color:var(--text);background:var(--bg3);border-left-color:var(--border2);}
-.nav-item.active{color:var(--green);border-left-color:var(--green);background:rgba(0,255,136,.04);}
-.nav-item .dot{width:6px;height:6px;border-radius:50%;background:currentColor;flex-shrink:0;}
-.nav-item .count{
-  margin-left:auto;
-  font-family:var(--mono);font-size:11px;
-  background:var(--muted2);
-  padding:2px 7px;border-radius:3px;color:var(--muted);
-}
-.nav-item.active .count{background:rgba(0,255,136,.15);color:var(--green);}
-
-.sidebar-footer{
-  margin-top:auto;
-  padding:16px 22px;
-  border-top:1px solid var(--border);
-  font-size:11px;color:var(--muted);
-  font-family:var(--mono);
-}
-
-/* ─── MAIN ───────────────────────────────────────────────── */
-.main{
-  flex:1;
-  padding:0;
-  overflow-y:auto;
-}
-
-/* ─── HERO ───────────────────────────────────────────────── */
-.hero{
-  padding:60px 50px 50px;
-  border-bottom:1px solid var(--border);
-  position:relative;
-  overflow:hidden;
-}
-.hero::before{
-  content:'GIT';
-  position:absolute;right:-20px;top:-20px;
-  font-size:220px;font-weight:800;
-  color:rgba(255,255,255,.012);
-  font-family:var(--mono);
-  line-height:1;pointer-events:none;
-  user-select:none;
-}
-.hero-label{
-  font-family:var(--mono);
-  font-size:11px;letter-spacing:3px;
-  color:var(--green);text-transform:uppercase;
-  margin-bottom:18px;display:flex;align-items:center;gap:10px;
-}
-.hero-label::before{
-  content:'';display:block;
-  width:24px;height:1px;background:var(--green);
-}
-.hero h1{
-  font-size:clamp(38px,5vw,64px);
-  font-weight:800;line-height:1.05;
-  letter-spacing:-2px;
-  margin-bottom:16px;
-}
-.hero h1 em{
-  font-style:normal;
-  color:transparent;
-  -webkit-text-stroke:1px rgba(255,255,255,.2);
-}
-.hero h1 strong{
-  font-style:normal;
-  background:linear-gradient(90deg,var(--green),var(--cyan));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-  background-clip:text;
-}
-.hero-sub{
-  font-size:15px;color:#666;
-  font-family:var(--mono);
-  margin-bottom:36px;
-}
-.hero-stats{
-  display:flex;gap:0;
-}
-.hero-stat{
-  padding:16px 28px;
-  border:1px solid var(--border);
-  border-right:none;
-}
-.hero-stat:first-child{border-radius:6px 0 0 6px;}
-.hero-stat:last-child{border-right:1px solid var(--border);border-radius:0 6px 6px 0;}
-.hero-stat-val{
-  font-family:var(--mono);font-weight:800;
-  font-size:26px;color:var(--green);
-}
-.hero-stat-key{
-  font-size:11px;color:var(--muted);
-  letter-spacing:1px;text-transform:uppercase;
-  font-family:var(--mono);margin-top:2px;
-}
-
-/* ─── SECTION ────────────────────────────────────────────── */
-.section{
-  padding:44px 50px 10px;
-  border-bottom:1px solid var(--border);
-}
-.section-head{
-  display:flex;align-items:center;gap:14px;
-  margin-bottom:32px;
-}
-.section-num{
-  font-family:var(--mono);font-size:11px;
-  color:var(--muted);letter-spacing:2px;
-}
-.section-line{
-  flex:1;height:1px;background:var(--border);
-}
-.section-tag{
-  font-family:var(--mono);font-size:11px;
-  padding:4px 10px;border:1px solid var(--border2);
-  border-radius:4px;color:var(--muted);letter-spacing:1px;
-}
-.section-title{
-  font-size:28px;font-weight:800;letter-spacing:-1px;
-  margin-bottom:6px;
-}
-.section-desc{font-size:14px;color:#555;font-family:var(--mono);}
-
-/* ─── GRID ───────────────────────────────────────────────── */
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(340px,1fr));
-  gap:1px;
-  background:var(--border);
-  margin:0 -50px;
-  padding:0;
-}
-
-/* ─── CARD ───────────────────────────────────────────────── */
-.card{
-  background:var(--bg);
-  padding:28px 30px;
-  transition:background .2s;
-  position:relative;
-  overflow:hidden;
-}
-.card::after{
-  content:'';position:absolute;
-  top:0;left:0;right:0;height:2px;
-  background:var(--accent, var(--green));
-  opacity:0;
-  transition:opacity .2s;
-}
-.card:hover{background:var(--bg2);}
-.card:hover::after{opacity:1;}
-
-/* Accent colors per section */
-#setup .card{--accent:var(--cyan);}
-#staging .card{--accent:var(--green);}
-#branching .card{--accent:var(--purple);}
-#remote .card{--accent:var(--cyan);}
-#undoing .card{--accent:var(--pink);}
-#inspection .card{--accent:var(--yellow);}
-#advanced .card{--accent:var(--orange);}
-#patching .card{--accent:var(--purple);}
-
-.card-top{
-  display:flex;align-items:flex-start;
-  justify-content:space-between;
-  margin-bottom:10px;
-}
-.cmd-name{
-  font-family:var(--mono);font-size:17px;font-weight:700;
-  color:var(--text);letter-spacing:.5px;
-}
-.cmd-name span{color:var(--accent, var(--green));}
-.badge{
-  font-family:var(--mono);font-size:10px;font-weight:700;
-  letter-spacing:.5px;padding:3px 8px;border-radius:3px;
-  text-transform:uppercase;flex-shrink:0;
-}
-.b-essential{background:rgba(0,255,136,.12);color:var(--green);border:1px solid rgba(0,255,136,.2);}
-.b-utility{background:rgba(0,229,255,.1);color:var(--cyan);border:1px solid rgba(0,229,255,.2);}
-.b-advanced{background:rgba(184,127,255,.1);color:var(--purple);border:1px solid rgba(184,127,255,.2);}
-.b-caution{background:rgba(255,45,120,.1);color:var(--pink);border:1px solid rgba(255,45,120,.2);}
-.b-modern{background:rgba(255,230,0,.1);color:var(--yellow);border:1px solid rgba(255,230,0,.2);}
-.b-safe{background:rgba(0,255,136,.12);color:var(--green);border:1px solid rgba(0,255,136,.2);}
-.b-release{background:rgba(255,107,53,.1);color:var(--orange);border:1px solid rgba(255,107,53,.2);}
-.b-recovery{background:rgba(255,45,120,.1);color:var(--pink);border:1px solid rgba(255,45,120,.2);}
-
-.card-desc{
-  font-size:13px;color:#666;
-  margin-bottom:18px;line-height:1.5;
-}
-
-/* ─── CODE BLOCK ─────────────────────────────────────────── */
-.code-block{
-  background:var(--bg3);
-  border:1px solid var(--border);
-  border-radius:6px;
-  padding:0;
-  margin-bottom:8px;
-  overflow:hidden;
-  transition:border-color .2s;
-}
-.code-block:hover{border-color:var(--border2);}
-
-.code-row{
-  display:flex;align-items:center;
-  padding:11px 14px;
-  gap:10px;
-  border-bottom:1px solid var(--border);
-}
-.code-row:last-child{border-bottom:none;}
-
-.prompt{
-  color:var(--green);
-  font-family:var(--mono);font-size:12px;
-  flex-shrink:0;opacity:.6;
-}
-.code-row code{
-  font-family:var(--mono);font-size:12.5px;
-  color:#c8e6ff;flex:1;
-  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
-}
-.copy-btn{
-  background:transparent;
-  border:1px solid var(--border2);
-  color:var(--muted);
-  border-radius:4px;
-  padding:4px 10px;
-  font-family:var(--mono);font-size:11px;
-  cursor:pointer;
-  transition:all .15s;
-  flex-shrink:0;
-  white-space:nowrap;
-}
-.copy-btn:hover{
-  border-color:var(--green);
-  color:var(--green);
-  background:rgba(0,255,136,.06);
-}
-.copy-btn.ok{
-  border-color:var(--green);
-  color:var(--green);
-  background:rgba(0,255,136,.1);
-}
-
-.hint{
-  font-size:12px;color:var(--muted);
-  font-family:var(--mono);
-  display:flex;align-items:flex-start;gap:8px;
-  padding:10px 0 0;
-}
-.hint::before{
-  content:'//';color:var(--border2);
-  font-family:var(--mono);flex-shrink:0;
-}
-
-/* ─── NO RESULTS ─────────────────────────────────────────── */
-.no-results{
-  display:none;
-  padding:80px 50px;
-  text-align:center;
-}
-.no-results h2{
-  font-family:var(--mono);font-size:18px;
-  color:var(--muted);margin-bottom:8px;
-}
-.no-results p{font-size:13px;color:var(--muted2);font-family:var(--mono);}
-
-/* ─── TOAST ──────────────────────────────────────────────── */
-.toast{
-  position:fixed;bottom:28px;right:28px;
-  background:var(--green);color:#000;
-  font-family:var(--mono);font-size:12px;font-weight:700;
-  padding:10px 18px;border-radius:4px;
-  opacity:0;transform:translateY(10px);
-  transition:all .25s;pointer-events:none;
-  z-index:999;letter-spacing:.5px;
-}
-.toast.on{opacity:1;transform:translateY(0);}
-
-/* ─── SCROLLBAR ──────────────────────────────────────────── */
-::-webkit-scrollbar{width:4px;}
-::-webkit-scrollbar-track{background:transparent;}
-::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px;}
-::-webkit-scrollbar-thumb:hover{background:var(--muted);}
-
-/* ─── HIGHLIGHT SEARCH ───────────────────────────────────── */
-.hl{background:rgba(255,230,0,.25);color:var(--yellow);}
-
-/* ─── MOBILE ─────────────────────────────────────────────── */
-.mobile-toggle{
-  display:none;
-  position:fixed;top:16px;left:16px;z-index:200;
-  background:var(--bg2);border:1px solid var(--border2);
-  border-radius:6px;padding:8px 12px;
-  color:var(--green);font-family:var(--mono);font-size:14px;
-  cursor:pointer;
-}
-
-@media(max-width:760px){
-  .sidebar{
-    position:fixed;left:0;top:0;height:100vh;
-    z-index:100;transform:translateX(-100%);
-    transition:transform .3s;
-  }
-  .sidebar.open{transform:translateX(0);}
-  .mobile-toggle{display:block;}
-  .main{padding-top:60px;}
-  .hero{padding:30px 20px;}
-  .section{padding:30px 20px 10px;}
-  .grid{margin:0 -20px;}
-  .hero-stats{flex-wrap:wrap;}
-  .hero-stat{border-right:1px solid var(--border);}
-  .hero-stat:last-child{border-bottom:1px solid var(--border);}
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Git Mastery - Commands Reference</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-
-<canvas id="bgCanvas"></canvas>
-<button class="mobile-toggle" id="menuBtn" onclick="document.querySelector('.sidebar').classList.toggle('open')">≡ MENU</button>
-
-<div class="layout">
-
-<!-- ═══════════════ SIDEBAR ═══════════════ -->
-<nav class="sidebar" id="sidebar">
-  <div class="logo">
-    <div class="logo-text"><span>GIT</span>.DEV</div>
-    <div class="logo-sub">// COMMAND REFERENCE v2.0</div>
+  <!-- ANIMATED BACKGROUND -->
+  <div class="background-container">
+    <div class="gradient-orb gradient-orb-1"></div>
+    <div class="gradient-orb gradient-orb-2"></div>
+    <div class="gradient-orb gradient-orb-3"></div>
+    <div class="gradient-mesh"></div>
   </div>
 
-  <div class="search-box">
-    <span>$</span>
-    <input type="text" id="searchBox" placeholder="search commands..." autocomplete="off" spellcheck="false">
+  <!-- HEADER HERO SECTION -->
+  <header class="hero-header">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="badge-icon">⚡</span>
+        <span>Git Mastery Hub</span>
+      </div>
+      
+      <h1 class="hero-title">
+        Master Git Like a Pro
+      </h1>
+      
+      <p class="hero-subtitle">
+        50+ essential commands organized beautifully. Copy, learn, and dominate version control.
+      </p>
+
+      <!-- SEARCH BAR -->
+      <div class="search-box-container">
+        <div class="search-box">
+          <i class="fas fa-search search-icon"></i>
+          <input 
+            type="text" 
+            id="searchInput" 
+            class="search-box-input" 
+            placeholder="Search git commands... (Press / to focus)"
+            autocomplete="off"
+          >
+          <span class="search-shortcut">Type to search</span>
+        </div>
+      </div>
+
+      <!-- STATS CARDS -->
+      <div class="stats-container">
+        <div class="stat-card">
+          <div class="stat-number">50+</div>
+          <div class="stat-text">Commands</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">8</div>
+          <div class="stat-text">Categories</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">100%</div>
+          <div class="stat-text">Free</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT AREA -->
+  <main class="main-content">
+    <div class="content-wrapper">
+      <!-- CATEGORIES GRID -->
+      <div class="categories-grid">
+        <!-- SETUP -->
+        <section class="category-panel" id="setup">
+          <div class="category-header setup-bg">
+            <div class="category-icon">🔧</div>
+            <h2>Setup & Config</h2>
+          </div>
+          <div class="commands-list">
+            <div class="command-item" data-search="config settings username email">
+              <div class="command-header">
+                <span class="command-title">git config</span>
+                <span class="badge-difficulty easy">Basic</span>
+              </div>
+              <p class="command-desc">Configure Git settings</p>
+              <div class="code-snippets">
+                <div class="code-snippet">git config --global user.name "Name"</div>
+                <div class="code-snippet">git config --list</div>
+              </div>
+            </div>
+
+            <div class="command-item" data-search="init initialize repository">
+              <div class="command-header">
+                <span class="command-title">git init</span>
+                <span class="badge-difficulty easy">Basic</span>
+              </div>
+              <p class="command-desc">Initialize new repository</p>
+              <div class="code-snippets">
+                <div class="code-snippet">git init</div>
+                <div class="code-snippet">git init [project-name]</div>
+              </div>
+            </div>
+
+            <div class="command-item" data-search="clone copy download remote">
+              <div class="command-header">
+                <span class="command-title">git clone</span>
+                <span class="badge-difficulty easy">Basic</span>
+              </div>
+              <p class="command-desc">Clone remote repository</p>
+              <div class="code-snippets">
+                <div class="code-snippet">git clone [url]</div>
+                <div class="code-snippet">git clone [url] [dir]</div>
+              </div>
+            </div>
+
+            <div class="command-item" data-search="help documentation guide">
+              <div class="command-header">
+                <span class="command-title">git help</span>
+                <span class="badge-difficulty easy">Basic</span>
+              </div>
+              <p class="command-desc">Get command help</p>
+              <div class="code-snippets">
+                <div class="code-snippet">git help [command]</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- STAGING & COMMITTING -->
+        <section class="category-panel" id="staging">
+          <div class="category-header staging-bg">
+            <div class="category-icon">📦</div>
+            <h2>Staging & Commits</h2>
+          </div>
+          <div class="commands-list">
+            <div class="command-item" data-search="add stage prepare">
+              <div class="command-header">
+                <span class="command-title">git add</span>
+                <span class="badge-difficulty easy">Basic</span>
+              </div>
+              <p class="command-desc">Stage changes for commit</p>
+              <div class="code-snippets">
+                <div class="code-snippet">git add .</div>
+                <div class="code-snippet">git add [file]</div>
+              </div>
+            </div>
+
+            <div class="command-item" data-search="commit save snapshot message">
+              <div class="command-header">
+                <span class="command-title">git commit</span>
+                <span class="badge-difficulty easy">Basic</span>
+              </div>
+              <p class="command-desc">Save to repository</p>
+              <div class="code-snippets">
+                <div class="code-snippet">git commit -m "message"</div>
+                <div class="code-snippet">git commit -am "message"</div>
+              </div>
+            </div>
+
+            <div class="command-item" data-search="status check state">
+              <div class="command-header">
+                <span class="command-title">git status</span>
+                <span class="badge-difficulty easy">Basic</span>
+              </div>
+              <p class="command-desc">Check repository status</p>
+              <div class="code-snippets">
+                <div class="code-snippet">git status</div>
+                <div class="code-snippet">git status -s</div>
+              </div>
+            </div>
+
+            <div class="command-item" data-search="diff differences changes">
+              <div class="command-header">
+                <span class="command-title">git diff</span>
+                <span class="badge-difficulty medium">Intermediate</span>
+              </div>
+              <p class="command-desc">View file changes</p>
+              <div class="code-snippets">
+                <div class="code-snippet">git diff</div>
+                <div class="code-snippet">git diff --staged</div>
+              </div>
+            </div>
+
+            <div class="command-item" data-search="mv move rename file">
+              <div class="command-header">
+                <span class="command-title">git mv</span>
+                <span class="badge-difficulty medium">Intermediate</span>
+              </div>
+              <p class="command-desc">Move or rename file</p>
+              <div class="code-snippets">
+                <div class="code-snippet">git mv [old] [new]</div>
+              </div>
+            </div>
+
+            <div class="command-item" data-search="rm remove delete file">
+              <div class="command-header">
+                <span class="command-title">git rm</span>
+                <span class="badge-difficulty medium">Intermediate</span>
+              </div>
+              <p class="command-desc">Remove file from tracking</p>
+              <div class="code-snippets">
+                <div class="code-snippet">git rm [file]</div>
+                <div class="code-snippet">git rm --cached [file]</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- BRANCHING -->
+        <section class="category-panel" id="branching">
+          <div class="category-header branching-bg">
+            <div class="category-icon">🌿</div>
+            <h2>Branching</h2>
+          </div>
+          <div class="commands-list">
+            <div class="command-item" data-search="branch create list delete">
+              <div class="command-header">
+                <span class="command-title">git branch</span>
+                <span class="badge-difficulty easy">Basic</span>
+              </div>
+              <p class="command-desc">Create, list, delete branches</p>
+              <div class="code-snippets">
+                <div class="code-snippet">git branch</div>
+                <div class="code-snippet">git branch [name]</div>
+                <div class="code-snippet">git branch -d [name]</div>
+              </div>
+            </div>
+
+            <div class="command-item" data-search="checkout switch branch">
+              <div class="command-header">
+                <span class="command-title">git checkout</span>
+                <span class="badge-difficulty easy">Basic</span>
+              </div>
+              <p class="command-desc">Switch branches</p>
+              <div class="code-snippets">
+                <div class="code-snippet">git checkout [branch]</div>
+                <div class="code-snippet">git checkout -b [branch]</div>
+              </div>
+            </div>
+
+            <div class="command-item" data-search="switch modern checkout">
+              <div class="command-header">
+                <span class="command-title">git switch</span>
+                <span class="badge-difficulty easy">Basic</span>
+              </div>
+              <p class="command-desc">Modern switch command</p>
+              <div class="code-snippets">
+                <div class="code-snippet">git switch [branch]</div>
+                <div class="code-snippet">git switch -c [branch]</div>
+              </div>
+            </div>
+
+            <div class="command-item" data-search="merge combine branches">
+              <div class="command-header">
+                <span class="command-title">git merge</span>
+                <span class="badge-difficulty medium">Intermediate</span>
+              </div>
+              <p class="command-desc">Merge branches together</p>
+              <div class="code-snippets">
+                <div class="code-snippet">git merge [branch]</div>
+                <div class="code-snippet">git merge --no-ff [branch]</div>
+              </div>
+            </div>
+
+            <div class="command-item" data-search="rebase replay history">
+              <div class="command-header">
+                <span class="command-title">git rebase</span>
+                <span class="badge-difficulty hard">Advanced</span>
+              </div>
+              <p class="command-desc">Rewrite commit history</p>
+              <div class="code-snippets">
+                <div class="code-snippet">git rebase [branch]</div>
+                <div class="code-snippet">git rebase -i HEAD~3</div>
+              </div>
+            </div>
+
+            <div class="command-item" data-search="cherry-pick specific commit">
+              <div class="command-header">
+                <span class="command-title">git cherry-pick</span>
+                <span class="badge-difficulty medium">Intermediate</span>
+              </div>
+              <p class="command-desc">Apply specific commits</p>
+              <div class="code-snippets">
+                <div class="code-snippet">git cherry-pick [hash]</div>
+              </div>
+            </div>
+
+            <div class="command-item" data-search="tag version release">
+              <div class="command-header">
+                <span class="command-title">git tag</span>
+                <span class="badge-difficulty medium">Intermediate</span>
+              </div>
+              <p class="command-desc">Mark versions</p>
+              <div class="code-snippets">
+                <div class="code-snippet">git tag [name]</div>
+                <div class="code-snippet">git tag -a [name] -m "msg"</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- REMOTE -->
+        <section class="category-panel" id="remote">
+          <div class="category-header remote-bg">
+            <div class="category-icon">☁️</div>
+            <h2>Remote & Sync</h2>
+          </div>
+          <div class="commands-list">
+            <div class="command-item" data-search="remote manage connections">
+              <div class="command-header">
+                <span class="command-title">git remote</span>
+                <span class="badge-difficulty easy">Basic</span>
+              </div>
+              <p class="command-desc">Manage remote repos</p>
+              <div class="code-snippets">
+                <div class="code-snippet">git remote -v</div>
+                <div class="code-snippet">git remote add [name] [url]</div>
+              </div>
+            </div>
+
+            <div class="command-item" data-search="push upload commits">
+              <div class="command-header">
+                <span class="command-title">git push</span>
+                <span class="badge-difficulty easy">Basic</span>
+              </div>
+              <p class="command-desc">Upload to remote</p>
+              <div class="code-snippets">
+                <div class="code-snippet">git push origin [branch]</div>
+                <div class="code-snippet">git push -u origin [branch]</div>
+              </div>
+            </div>
+
+            <div class="command-item" data-search="pull download merge">
+              <div class="command-header">
+                <span class="command-title">git pull</span>
+                <span class="badge-difficulty easy">Basic</span>
+              </div>
+              <p class="command-desc">Download and merge</p>
+              <div class="code-snippets">
+                <div class="code-snippet">git pull</div>
+                <div class="code-snippet">git pull --rebase</div>
+              </div>
+            </div>
+
+            <div class="command-item" data-search="fetch download remote">
+              <div class="command-header">
+                <span class="command-title">git fetch</span>
+                <span class="badge-difficulty easy">Basic</span>
+              </div>
+              <p class="command-desc">Fetch from remote</p>
+              <div class="code-snippets">
+                <div class="code-snippet">git fetch</div>
+                <div class="code-snippet">git fetch origin</div>
+              </div>
+            </div>
+
+            <div class="command-item" data-search="submodule nested repo">
+              <div class="command-header">
+                <span class="command-title">git submodule</span>
+                <span class="badge-difficulty hard">Advanced</span>
+              </div>
+              <p class="command-desc">Manage nested repos</p>
+              <div class="code-snippets">
+                <div class="code-snippet">git submodule add [url]</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- UNDO -->
+        <section class="category-panel" id="undo">
+          <div class="category-header undo-bg">
+            <div class="category-icon">↩️</div>
+            <h2>Undo & Fix</h2>
+          </div>
+          <div class="commands-list">
+            <div class="command-item" data-search="reset undo revert">
+              <div class="command-header">
+                <span class="command-title">git reset</span>
+                <span class="badge-difficulty medium">Intermediate</span>
+              </div>
+              <p class="command-desc">Undo changes</p>
+              <div class="code-snippets">
+                <div class="code-snippet">git reset [file]</div>
+                <div class="code-snippet">git reset HEAD~1</div>
+              </div>
+            </div>
+
+            <div class="command-item" data-search="revert safe undo">
+              <div class="command-header">
+                <span class="command-title">git revert</span>
+                <span class="badge-difficulty medium">Intermediate</span>
+              </div>
+              <p class="command-desc">Create undo commit</p>
+              <div class="code-snippets">
+                <div class="code-snippet">git revert [hash]</div>
+              </div>
+            </div>
+
+            <div class="command-item" data-search="restore discard changes">
+              <div class="command-header">
+                <span class="command-title">git restore</span>
+                <span class="badge-difficulty easy">Basic</span>
+              </div>
+              <p class="command-desc">Discard file changes</p>
+              <div class="code-snippets">
+                <div class="code-snippet">git restore [file]</div>
+              </div>
+            </div>
+
+            <div class="command-item" data-search="stash save temporarily">
+              <div class="command-header">
+                <span class="command-title">git stash</span>
+                <span class="badge-difficulty medium">Intermediate</span>
+              </div>
+              <p class="command-desc">Save work temporarily</p>
+              <div class="code-snippets">
+                <div class="code-snippet">git stash</div>
+                <div class="code-snippet">git stash pop</div>
+              </div>
+            </div>
+
+            <div class="command-item" data-search="clean remove untracked">
+              <div class="command-header">
+                <span class="command-title">git clean</span>
+                <span class="badge-difficulty medium">Intermediate</span>
+              </div>
+              <p class="command-desc">Remove untracked files</p>
+              <div class="code-snippets">
+                <div class="code-snippet">git clean -fd</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- HISTORY -->
+        <section class="category-panel" id="history">
+          <div class="category-header history-bg">
+            <div class="category-icon">📜</div>
+            <h2>History & Analysis</h2>
+          </div>
+          <div class="commands-list">
+            <div class="command-item" data-search="log view history">
+              <div class="command-header">
+                <span class="command-title">git log</span>
+                <span class="badge-difficulty easy">Basic</span>
+              </div>
+              <p class="command-desc">View commit history</p>
+              <div class="code-snippets">
+                <div class="code-snippet">git log</div>
+                <div class="code-snippet">git log --oneline</div>
+              </div>
+            </div>
+
+            <div class="command-item" data-search="show inspect commit">
+              <div class="command-header">
+                <span class="command-title">git show</span>
+                <span class="badge-difficulty medium">Intermediate</span>
+              </div>
+              <p class="command-desc">Show commit details</p>
+              <div class="code-snippets">
+                <div class="code-snippet">git show [hash]</div>
+              </div>
+            </div>
+
+            <div class="command-item" data-search="blame who changed line">
+              <div class="command-header">
+                <span class="command-title">git blame</span>
+                <span class="badge-difficulty medium">Intermediate</span>
+              </div>
+              <p class="command-desc">Track line changes</p>
+              <div class="code-snippets">
+                <div class="code-snippet">git blame [file]</div>
+              </div>
+            </div>
+
+            <div class="command-item" data-search="bisect find bug">
+              <div class="command-header">
+                <span class="command-title">git bisect</span>
+                <span class="badge-difficulty hard">Advanced</span>
+              </div>
+              <p class="command-desc">Find bug commit</p>
+              <div class="code-snippets">
+                <div class="code-snippet">git bisect start</div>
+              </div>
+            </div>
+
+            <div class="command-item" data-search="shortlog summary author">
+              <div class="command-header">
+                <span class="command-title">git shortlog</span>
+                <span class="badge-difficulty medium">Intermediate</span>
+              </div>
+              <p class="command-desc">Summary by author</p>
+              <div class="code-snippets">
+                <div class="code-snippet">git shortlog -sn</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ADVANCED -->
+        <section class="category-panel" id="advanced">
+          <div class="category-header advanced-bg">
+            <div class="category-icon">⚙️</div>
+            <h2>Advanced Tools</h2>
+          </div>
+          <div class="commands-list">
+            <div class="command-item" data-search="reflog recover lost">
+              <div class="command-header">
+                <span class="command-title">git reflog</span>
+                <span class="badge-difficulty hard">Advanced</span>
+              </div>
+              <p class="command-desc">Recover lost commits</p>
+              <div class="code-snippets">
+                <div class="code-snippet">git reflog</div>
+              </div>
+            </div>
+
+            <div class="command-item" data-search="worktree multiple branches">
+              <div class="command-header">
+                <span class="command-title">git worktree</span>
+                <span class="badge-difficulty hard">Advanced</span>
+              </div>
+              <p class="command-desc">Multiple work areas</p>
+              <div class="code-snippets">
+                <div class="code-snippet">git worktree add [path]</div>
+              </div>
+            </div>
+
+            <div class="command-item" data-search="archive export zip tar">
+              <div class="command-header">
+                <span class="command-title">git archive</span>
+                <span class="badge-difficulty medium">Intermediate</span>
+              </div>
+              <p class="command-desc">Export as archive</p>
+              <div class="code-snippets">
+                <div class="code-snippet">git archive HEAD --format zip</div>
+              </div>
+            </div>
+
+            <div class="command-item" data-search="gc garbage cleanup">
+              <div class="command-header">
+                <span class="command-title">git gc</span>
+                <span class="badge-difficulty hard">Advanced</span>
+              </div>
+              <p class="command-desc">Optimize repo</p>
+              <div class="code-snippets">
+                <div class="code-snippet">git gc</div>
+              </div>
+            </div>
+
+            <div class="command-item" data-search="hooks automate">
+              <div class="command-header">
+                <span class="command-title">git hooks</span>
+                <span class="badge-difficulty hard">Advanced</span>
+              </div>
+              <p class="command-desc">Automate actions</p>
+              <div class="code-snippets">
+                <div class="code-snippet">.git/hooks/pre-commit</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- PATCHES -->
+        <section class="category-panel" id="patches">
+          <div class="category-header patches-bg">
+            <div class="category-icon">🧩</div>
+            <h2>Patches</h2>
+          </div>
+          <div class="commands-list">
+            <div class="command-item" data-search="apply patch file">
+              <div class="command-header">
+                <span class="command-title">git apply</span>
+                <span class="badge-difficulty medium">Intermediate</span>
+              </div>
+              <p class="command-desc">Apply patch</p>
+              <div class="code-snippets">
+                <div class="code-snippet">git apply [patch]</div>
+              </div>
+            </div>
+
+            <div class="command-item" data-search="format-patch create">
+              <div class="command-header">
+                <span class="command-title">git format-patch</span>
+                <span class="badge-difficulty medium">Intermediate</span>
+              </div>
+              <p class="command-desc">Create patch files</p>
+              <div class="code-snippets">
+                <div class="code-snippet">git format-patch HEAD~3</div>
+              </div>
+            </div>
+
+            <div class="command-item" data-search="am apply mail">
+              <div class="command-header">
+                <span class="command-title">git am</span>
+                <span class="badge-difficulty medium">Intermediate</span>
+              </div>
+              <p class="command-desc">Apply from email</p>
+              <div class="code-snippets">
+                <div class="code-snippet">git am [patch]</div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- NO RESULTS MESSAGE -->
+      <div id="noResults" class="no-results-state">
+        <div class="no-results-icon">🔍</div>
+        <h3>No commands found</h3>
+        <p>Try different search terms</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- FLOATING BUTTONS -->
+  <div class="floating-actions">
+    <button id="scrollToTop" class="float-btn scroll-btn" title="Back to top">
+      <i class="fas fa-arrow-up"></i>
+    </button>
   </div>
 
-  <div class="nav-section-label">// categories</div>
-  <a href="#setup" class="nav-item active" onclick="setActive(this)"><span class="dot"></span>Setup<span class="count">4</span></a>
-  <a href="#staging" class="nav-item" onclick="setActive(this)"><span class="dot"></span>Staging<span class="count">6</span></a>
-  <a href="#branching" class="nav-item" onclick="setActive(this)"><span class="dot"></span>Branching<span class="count">7</span></a>
-  <a href="#remote" class="nav-item" onclick="setActive(this)"><span class="dot"></span>Remote<span class="count">5</span></a>
-  <a href="#undoing" class="nav-item" onclick="setActive(this)"><span class="dot"></span>Undoing<span class="count">5</span></a>
-  <a href="#inspection" class="nav-item" onclick="setActive(this)"><span class="dot"></span>Inspection<span class="count">5</span></a>
-  <a href="#advanced" class="nav-item" onclick="setActive(this)"><span class="dot"></span>Advanced<span class="count">5</span></a>
-  <a href="#patching" class="nav-item" onclick="setActive(this)"><span class="dot"></span>Patching<span class="count">3</span></a>
-
-  <div class="sidebar-footer">
-    40+ cmds &nbsp;·&nbsp; 8 sections<br>
-    <span style="color:#333">// press ⌘K to search</span>
-  </div>
-</nav>
-
-<!-- ═══════════════ MAIN ═══════════════ -->
-<main class="main" id="main">
-
-  <!-- HERO -->
-  <div class="hero">
-    <div class="hero-label">Git &amp; GitHub — Ultimate Reference</div>
-    <h1>Every command<br><em>you</em> <strong>actually need</strong></h1>
-    <p class="hero-sub">// 40+ commands · copy &amp; paste ready · no fluff</p>
-    <div class="hero-stats">
-      <div class="hero-stat"><div class="hero-stat-val">40+</div><div class="hero-stat-key">Commands</div></div>
-      <div class="hero-stat"><div class="hero-stat-val">8</div><div class="hero-stat-key">Sections</div></div>
-      <div class="hero-stat"><div class="hero-stat-val">100%</div><div class="hero-stat-key">Working</div></div>
-      <div class="hero-stat"><div class="hero-stat-val">0</div><div class="hero-stat-key">Fluff</div></div>
-    </div>
+  <!-- NOTIFICATIONS -->
+  <div id="notification" class="notification">
+    <i class="fas fa-check"></i>
+    <span id="notificationText">Copied!</span>
   </div>
 
-  <div class="no-results" id="noResults">
-    <h2>// no results found</h2>
-    <p>try searching something else</p>
-  </div>
-
-  <!-- ─── SETUP ─────────────────────────────────── -->
-  <section class="section" id="setup">
-    <div class="section-head">
-      <span class="section-num">01</span>
-      <div class="section-line"></div>
-      <span class="section-tag">SETUP</span>
-    </div>
-    <div class="section-title">Setup &amp; Configuration</div>
-    <div class="section-desc">// initialize repos and set your identity</div>
-    <div class="grid" style="margin-top:28px;">
-
-      <div class="card" data-search="config user name email global">
-        <div class="card-top"><span class="cmd-name"><span>git</span> config</span><span class="badge b-essential">Essential</span></div>
-        <p class="card-desc">Set your identity and preferences globally or per-repo</p>
-        <div class="code-block">
-          <div class="code-row"><span class="prompt">$</span><code>git config --global user.name "Name"</code><button class="copy-btn" onclick="copy(this,'git config --global user.name &quot;Name&quot;')">copy</button></div>
-          <div class="code-row"><span class="prompt">$</span><code>git config --global user.email "you@mail.com"</code><button class="copy-btn" onclick="copy(this,'git config --global user.email &quot;you@mail.com&quot;')">copy</button></div>
-          <div class="code-row"><span class="prompt">$</span><code>git config --list</code><button class="copy-btn" onclick="copy(this,'git config --list')">copy</button></div>
-        </div>
-        <p class="hint">use --local to override per project</p>
-      </div>
-
-      <div class="card" data-search="init initialize start repo">
-        <div class="card-top"><span class="cmd-name"><span>git</span> init</span><span class="badge b-essential">Essential</span></div>
-        <p class="card-desc">Create a brand new local repository</p>
-        <div class="code-block">
-          <div class="code-row"><span class="prompt">$</span><code>git init</code><button class="copy-btn" onclick="copy(this,'git init')">copy</button></div>
-          <div class="code-row"><span class="prompt">$</span><code>git init my-project</code><button class="copy-btn" onclick="copy(this,'git init my-project')">copy</button></div>
-        </div>
-        <p class="hint">creates a hidden .git directory</p>
-      </div>
-
-      <div class="card" data-search="clone copy download remote repo">
-        <div class="card-top"><span class="cmd-name"><span>git</span> clone</span><span class="badge b-essential">Essential</span></div>
-        <p class="card-desc">Copy a remote repository to your machine</p>
-        <div class="code-block">
-          <div class="code-row"><span class="prompt">$</span><code>git clone https://github.com/user/repo.git</code><button class="copy-btn" onclick="copy(this,'git clone https://github.com/user/repo.git')">copy</button></div>
-          <div class="code-row"><span class="prompt">$</span><code>git clone &lt;url&gt; folder-name</code><button class="copy-btn" onclick="copy(this,'git clone <url> folder-name')">copy</button></div>
-        </div>
-        <p class="hint">downloads full history and all branches</p>
-      </div>
-
-      <div class="card" data-search="help docs manual">
-        <div class="card-top"><span class="cmd-name"><span>git</span> help</span><span class="badge b-utility">Utility</span></div>
-        <p class="card-desc">Open documentation for any command</p>
-        <div class="code-block">
-          <div class="code-row"><span class="prompt">$</span><code>git help commit</code><button class="copy-btn" onclick="copy(this,'git help commit')">copy</button></div>
-          <div class="code-row"><span class="prompt">$</span><code>git commit --help</code><button class="copy-btn" onclick="copy(this,'git commit --help')">copy</button></div>
-        </div>
-        <p class="hint">opens man page in browser or terminal</p>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ─── STAGING ───────────────────────────────── -->
-  <section class="section" id="staging">
-    <div class="section-head">
-      <span class="section-num">02</span>
-      <div class="section-line"></div>
-      <span class="section-tag">STAGING</span>
-    </div>
-    <div class="section-title">Staging &amp; Committing</div>
-    <div class="section-desc">// stage changes and create commits</div>
-    <div class="grid" style="margin-top:28px;">
-
-      <div class="card" data-search="add stage file all">
-        <div class="card-top"><span class="cmd-name"><span>git</span> add</span><span class="badge b-essential">Essential</span></div>
-        <p class="card-desc">Stage files for your next commit</p>
-        <div class="code-block">
-          <div class="code-row"><span class="prompt">$</span><code>git add .</code><button class="copy-btn" onclick="copy(this,'git add .')">copy</button></div>
-          <div class="code-row"><span class="prompt">$</span><code>git add filename.js</code><button class="copy-btn" onclick="copy(this,'git add filename.js')">copy</button></div>
-          <div class="code-row"><span class="prompt">$</span><code>git add -p</code><button class="copy-btn" onclick="copy(this,'git add -p')">copy</button></div>
-        </div>
-        <p class="hint">-p lets you stage changes interactively</p>
-      </div>
-
-      <div class="card" data-search="commit message save snapshot history">
-        <div class="card-top"><span class="cmd-name"><span>git</span> commit</span><span class="badge b-essential">Essential</span></div>
-        <p class="card-desc">Save staged changes as a snapshot</p>
-        <div class="code-block">
-          <div class="code-row"><span class="prompt">$</span><code>git commit -m "feat: add login"</code><button class="copy-btn" onclick="copy(this,'git commit -m &quot;feat: add login&quot;')">copy</button></div>
-          <div class="code-row"><span class="prompt">$</span><code>git commit -am "fix: typo"</code><button class="copy-btn" onclick="copy(this,'git commit -am &quot;fix: typo&quot;')">copy</button></div>
-          <div class="code-row"><span class="prompt">$</span><code>git commit --amend</code><button class="copy-btn" onclick="copy(this,'git commit --amend')">copy</button></div>
-        </div>
-        <p class="hint">--amend rewrites the last commit</p>
-      </div>
-
-      <div class="card" data-search="status working tree modified">
-        <div class="card-top"><span class="cmd-name"><span>git</span> status</span><span class="badge b-essential">Essential</span></div>
-        <p class="card-desc">See what's changed in your working tree</p>
-        <div class="code-block">
-          <div class="code-row"><span class="prompt">$</span><code>git status</code><button class="copy-btn" onclick="copy(this,'git status')">copy</button></div>
-          <div class="code-row"><span class="prompt">$</span><code>git status -s</code><button class="copy-btn" onclick="copy(this,'git status -s')">copy</button></div>
-        </div>
-        <p class="hint">-s shows compact short output</p>
-      </div>
-
-      <div class="card" data-search="diff changes lines compare">
-        <div class="card-top"><span class="cmd-name"><span>git</span> diff</span><span class="badge b-utility">Utility</span></div>
-        <p class="card-desc">Show line-level changes between states</p>
-        <div class="code-block">
-          <div class="code-row"><span class="prompt">$</span><code>git diff</code><button class="copy-btn" onclick="copy(this,'git diff')">copy</button></div>
-          <div class="code-row"><span class="prompt">$</span><code>git diff --staged</code><button class="copy-btn" onclick="copy(this,'git diff --staged')">copy</button></div>
-          <div class="code-row"><span class="prompt">$</span><code>git diff main..feature</code><button class="copy-btn" onclick="copy(this,'git diff main..feature')">copy</button></div>
-        </div>
-        <p class="hint">--staged compares staged vs last commit</p>
-      </div>
-
-      <div class="card" data-search="mv move rename file">
-        <div class="card-top"><span class="cmd-name"><span>git</span> mv</span><span class="badge b-utility">Utility</span></div>
-        <p class="card-desc">Rename or move a tracked file</p>
-        <div class="code-block">
-          <div class="code-row"><span class="prompt">$</span><code>git mv old.js new.js</code><button class="copy-btn" onclick="copy(this,'git mv old.js new.js')">copy</button></div>
-        </div>
-        <p class="hint">auto-stages the rename operation</p>
-      </div>
-
-      <div class="card" data-search="rm remove delete untrack">
-        <div class="card-top"><span class="cmd-name"><span>git</span> rm</span><span class="badge b-caution">Caution</span></div>
-        <p class="card-desc">Stop tracking a file and optionally delete it</p>
-        <div class="code-block">
-          <div class="code-row"><span class="prompt">$</span><code>git rm filename.js</code><button class="copy-btn" onclick="copy(this,'git rm filename.js')">copy</button></div>
-          <div class="code-row"><span class="prompt">$</span><code>git rm --cached filename.js</code><button class="copy-btn" onclick="copy(this,'git rm --cached filename.js')">copy</button></div>
-        </div>
-        <p class="hint">--cached keeps the local file</p>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ─── BRANCHING ─────────────────────────────── -->
-  <section class="section" id="branching">
-    <div class="section-head">
-      <span class="section-num">03</span>
-      <div class="section-line"></div>
-      <span class="section-tag">BRANCHING</span>
-    </div>
-    <div class="section-title">Branching &amp; Merging</div>
-    <div class="section-desc">// parallel development workflows</div>
-    <div class="grid" style="margin-top:28px;">
-
-      <div class="card" data-search="branch create list delete manage">
-        <div class="card-top"><span class="cmd-name"><span>git</span> branch</span><span class="badge b-essential">Essential</span></div>
-        <p class="card-desc">Create, list, rename, and delete branches</p>
-        <div class="code-block">
-          <div class="code-row"><span class="prompt">$</span><code>git branch</code><button class="copy-btn" onclick="copy(this,'git branch')">copy</button></div>
-          <div class="code-row"><span class="prompt">$</span><code>git branch feature/login</code><button class="copy-btn" onclick="copy(this,'git branch feature/login')">copy</button></div>
-          <div class="code-row"><span class="prompt">$</span><code>git branch -d branch-name</code><button class="copy-btn" onclick="copy(this,'git branch -d branch-name')">copy</button></div>
-        </div>
-        <p class="hint">-D forces delete an unmerged branch</p>
-      </div>
-
-      <div class="card" data-search="checkout switch branch file restore">
-        <div class="card-top"><span class="cmd-name"><span>git</span> checkout</span><span class="badge b-essential">Essential</span></div>
-        <p class="card-desc">Switch branches or restore working files</p>
-        <div class="code-block">
-          <div class="code-row"><span class="prompt">$</span><code>git checkout main</code><button class="copy-btn" onclick="copy(this,'git checkout main')">copy</button></div>
-          <div class="code-row"><span class="prompt">$</span><code>git checkout -b feature/new</code><button class="copy-btn" onclick="copy(this,'git checkout -b feature/new')">copy</button></div>
-        </div>
-        <p class="hint">-b creates and switches in one command</p>
-      </div>
-
-      <div class="card" data-search="switch branch modern 2.23">
-        <div class="card-top"><span class="cmd-name"><span>git</span> switch</span><span class="badge b-modern">Modern</span></div>
-        <p class="card-desc">Dedicated command to switch branches (v2.23+)</p>
-        <div class="code-block">
-          <div class="code-row"><span class="prompt">$</span><code>git switch main</code><button class="copy-btn" onclick="copy(this,'git switch main')">copy</button></div>
-          <div class="code-row"><span class="prompt">$</span><code>git switch -c feature/new</code><button class="copy-btn" onclick="copy(this,'git switch -c feature/new')">copy</button></div>
-        </div>
-        <p class="hint">clearer intent than checkout</p>
-      </div>
-
-      <div class="card" data-search="merge combine join branch">
-        <div class="card-top"><span class="cmd-name"><span>git</span> merge</span><span class="badge b-essential">Essential</span></div>
-        <p class="card-desc">Join two or more branches together</p>
-        <div class="code-block">
-          <div class="code-row"><span class="prompt">$</span><code>git merge feature/login</code><button class="copy-btn" onclick="copy(this,'git merge feature/login')">copy</button></div>
-          <div class="code-row"><span class="prompt">$</span><code>git merge --no-ff feature/login</code><button class="copy-btn" onclick="copy(this,'git merge --no-ff feature/login')">copy</button></div>
-        </div>
-        <p class="hint">--no-ff always creates a merge commit</p>
-      </div>
-
-      <div class="card" data-search="rebase replay history linear clean">
-        <div class="card-top"><span class="cmd-name"><span>git</span> rebase</span><span class="badge b-advanced">Advanced</span></div>
-        <p class="card-desc">Replay commits on top of another branch</p>
-        <div class="code-block">
-          <div class="code-row"><span class="prompt">$</span><code>git rebase main</code><button class="copy-btn" onclick="copy(this,'git rebase main')">copy</button></div>
-          <div class="code-row"><span class="prompt">$</span><code>git rebase -i HEAD~3</code><button class="copy-btn" onclick="copy(this,'git rebase -i HEAD~3')">copy</button></div>
-        </div>
-        <p class="hint">-i opens interactive squash/reorder mode</p>
-      </div>
-
-      <div class="card" data-search="cherry-pick specific commit apply port">
-        <div class="card-top"><span class="cmd-name"><span>git</span> cherry-pick</span><span class="badge b-advanced">Advanced</span></div>
-        <p class="card-desc">Apply a specific commit from another branch</p>
-        <div class="code-block">
-          <div class="code-row"><span class="prompt">$</span><code>git cherry-pick abc1234</code><button class="copy-btn" onclick="copy(this,'git cherry-pick abc1234')">copy</button></div>
-          <div class="code-row"><span class="prompt">$</span><code>git cherry-pick a1..b2</code><button class="copy-btn" onclick="copy(this,'git cherry-pick a1..b2')">copy</button></div>
-        </div>
-        <p class="hint">great for backporting hotfixes</p>
-      </div>
-
-      <div class="card" data-search="tag release version annotated">
-        <div class="card-top"><span class="cmd-name"><span>git</span> tag</span><span class="badge b-release">Release</span></div>
-        <p class="card-desc">Mark release points in history</p>
-        <div class="code-block">
-          <div class="code-row"><span class="prompt">$</span><code>git tag v1.0.0</code><button class="copy-btn" onclick="copy(this,'git tag v1.0.0')">copy</button></div>
-          <div class="code-row"><span class="prompt">$</span><code>git tag -a v1.0.0 -m "release"</code><button class="copy-btn" onclick="copy(this,'git tag -a v1.0.0 -m &quot;release&quot;')">copy</button></div>
-          <div class="code-row"><span class="prompt">$</span><code>git push origin v1.0.0</code><button class="copy-btn" onclick="copy(this,'git push origin v1.0.0')">copy</button></div>
-        </div>
-        <p class="hint">use semver: major.minor.patch</p>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ─── REMOTE ────────────────────────────────── -->
-  <section class="section" id="remote">
-    <div class="section-head">
-      <span class="section-num">04</span>
-      <div class="section-line"></div>
-      <span class="section-tag">REMOTE</span>
-    </div>
-    <div class="section-title">Remote Workflows</div>
-    <div class="section-desc">// collaborate with remote repositories</div>
-    <div class="grid" style="margin-top:28px;">
-
-      <div class="card" data-search="remote add url origin manage">
-        <div class="card-top"><span class="cmd-name"><span>git</span> remote</span><span class="badge b-essential">Essential</span></div>
-        <p class="card-desc">Manage remote repository connections</p>
-        <div class="code-block">
-          <div class="code-row"><span class="prompt">$</span><code>git remote -v</code><button class="copy-btn" onclick="copy(this,'git remote -v')">copy</button></div>
-          <div class="code-row"><span class="prompt">$</span><code>git remote add origin &lt;url&gt;</code><button class="copy-btn" onclick="copy(this,'git remote add origin <url>')">copy</button></div>
-          <div class="code-row"><span class="prompt">$</span><code>git remote remove origin</code><button class="copy-btn" onclick="copy(this,'git remote remove origin')">copy</button></div>
-        </div>
-        <p class="hint">-v shows fetch and push URLs</p>
-      </div>
-
-      <div class="card" data-search="push upload send commits upstream">
-        <div class="card-top"><span class="cmd-name"><span>git</span> push</span><span class="badge b-essential">Essential</span></div>
-        <p class="card-desc">Upload your commits to a remote repository</p>
-        <div class="code-block">
-          <div class="code-row"><span class="prompt">$</span><code>git push origin main</code><button class="copy-btn" onclick="copy(this,'git push origin main')">copy</button></div>
-          <div class="code-row"><span class="prompt">$</span><code>git push -u origin feature</code><button class="copy-btn" onclick="copy(this,'git push -u origin feature')">copy</button></div>
-          <div class="code-row"><span class="prompt">$</span><code>git push --force-with-lease</code><button class="copy-btn" onclick="copy(this,'git push --force-with-lease')">copy</button></div>
-        </div>
-        <p class="hint">--force-with-lease is safer than --force</p>
-      </div>
-
-      <div class="card" data-search="pull download merge fetch integrate">
-        <div class="card-top"><span class="cmd-name"><span>git</span> pull</span><span class="badge b-essential">Essential</span></div>
-        <p class="card-desc">Fetch and integrate remote changes</p>
-        <div class="code-block">
-          <div class="code-row"><span class="prompt">$</span><code>git pull origin main</code><button class="copy-btn" onclick="copy(this,'git pull origin main')">copy</button></div>
-          <div class="code-row"><span class="prompt">$</span><code>git pull --rebase</code><button class="copy-btn" onclick="copy(this,'git pull --rebase')">copy</button></div>
-        </div>
-        <p class="hint">--rebase avoids merge commit clutter</p>
-      </div>
-
-      <div class="card" data-search="fetch download preview safe no-merge">
-        <div class="card-top"><span class="cmd-name"><span>git</span> fetch</span><span class="badge b-safe">Safe</span></div>
-        <p class="card-desc">Download remote changes without merging</p>
-        <div class="code-block">
-          <div class="code-row"><span class="prompt">$</span><code>git fetch origin</code><button class="copy-btn" onclick="copy(this,'git fetch origin')">copy</button></div>
-          <div class="code-row"><span class="prompt">$</span><code>git fetch --all --prune</code><button class="copy-btn" onclick="copy(this,'git fetch --all --prune')">copy</button></div>
-        </div>
-        <p class="hint">--prune removes deleted remote branches</p>
-      </div>
-
-      <div class="card" data-search="submodule nested repo dependency">
-        <div class="card-top"><span class="cmd-name"><span>git</span> submodule</span><span class="badge b-advanced">Advanced</span></div>
-        <p class="card-desc">Embed another repository inside yours</p>
-        <div class="code-block">
-          <div class="code-row"><span class="prompt">$</span><code>git submodule add &lt;url&gt; path/</code><button class="copy-btn" onclick="copy(this,'git submodule add <url> path/')">copy</button></div>
-          <div class="code-row"><span class="prompt">$</span><code>git submodule update --init</code><button class="copy-btn" onclick="copy(this,'git submodule update --init')">copy</button></div>
-        </div>
-        <p class="hint">great for managing shared libraries</p>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ─── UNDOING ───────────────────────────────── -->
-  <section class="section" id="undoing">
-    <div class="section-head">
-      <span class="section-num">05</span>
-      <div class="section-line"></div>
-      <span class="section-tag">UNDOING</span>
-    </div>
-    <div class="section-title">Undoing Changes</div>
-    <div class="section-desc">// recover, revert, and reset your work</div>
-    <div class="grid" style="margin-top:28px;">
-
-      <div class="card" data-search="reset undo unstage commits hard soft">
-        <div class="card-top"><span class="cmd-name"><span>git</span> reset</span><span class="badge b-caution">Caution</span></div>
-        <p class="card-desc">Move HEAD and optionally undo commits</p>
-        <div class="code-block">
-          <div class="code-row"><span class="prompt">$</span><code>git reset HEAD~1</code><button class="copy-btn" onclick="copy(this,'git reset HEAD~1')">copy</button></div>
-          <div class="code-row"><span class="prompt">$</span><code>git reset --soft HEAD~1</code><button class="copy-btn" onclick="copy(this,'git reset --soft HEAD~1')">copy</button></div>
-          <div class="code-row"><span class="prompt">$</span><code>git reset --hard HEAD~1</code><button class="copy-btn" onclick="copy(this,'git reset --hard HEAD~1')">copy</button></div>
-        </div>
-        <p class="hint">--hard deletes changes permanently</p>
-      </div>
-
-      <div class="card" data-search="revert undo safe new commit published">
-        <div class="card-top"><span class="cmd-name"><span>git</span> revert</span><span class="badge b-safe">Safe</span></div>
-        <p class="card-desc">Undo a commit by creating an inverse commit</p>
-        <div class="code-block">
-          <div class="code-row"><span class="prompt">$</span><code>git revert abc1234</code><button class="copy-btn" onclick="copy(this,'git revert abc1234')">copy</button></div>
-          <div class="code-row"><span class="prompt">$</span><code>git revert HEAD</code><button class="copy-btn" onclick="copy(this,'git revert HEAD')">copy</button></div>
-        </div>
-        <p class="hint">preferred when commits are already pushed</p>
-      </div>
-
-      <div class="card" data-search="restore discard working directory modern">
-        <div class="card-top"><span class="cmd-name"><span>git</span> restore</span><span class="badge b-modern">Modern</span></div>
-        <p class="card-desc">Discard changes in working tree or index</p>
-        <div class="code-block">
-          <div class="code-row"><span class="prompt">$</span><code>git restore file.js</code><button class="copy-btn" onclick="copy(this,'git restore file.js')">copy</button></div>
-          <div class="code-row"><span class="prompt">$</span><code>git restore --staged file.js</code><button class="copy-btn" onclick="copy(this,'git restore --staged file.js')">copy</button></div>
-        </div>
-        <p class="hint">cleaner replacement for checkout in v2.23+</p>
-      </div>
-
-      <div class="card" data-search="stash shelve save temporarily pause wip">
-        <div class="card-top"><span class="cmd-name"><span>git</span> stash</span><span class="badge b-utility">Utility</span></div>
-        <p class="card-desc">Shelve changes to revisit later</p>
-        <div class="code-block">
-          <div class="code-row"><span class="prompt">$</span><code>git stash</code><button class="copy-btn" onclick="copy(this,'git stash')">copy</button></div>
-          <div class="code-row"><span class="prompt">$</span><code>git stash pop</code><button class="copy-btn" onclick="copy(this,'git stash pop')">copy</button></div>
-          <div class="code-row"><span class="prompt">$</span><code>git stash list</code><button class="copy-btn" onclick="copy(this,'git stash list')">copy</button></div>
-        </div>
-        <p class="hint">stash push -m "name" to label stashes</p>
-      </div>
-
-      <div class="card" data-search="clean remove untracked files wipe">
-        <div class="card-top"><span class="cmd-name"><span>git</span> clean</span><span class="badge b-caution">Caution</span></div>
-        <p class="card-desc">Delete all untracked files and directories</p>
-        <div class="code-block">
-          <div class="code-row"><span class="prompt">$</span><code>git clean -fd</code><button class="copy-btn" onclick="copy(this,'git clean -fd')">copy</button></div>
-          <div class="code-row"><span class="prompt">$</span><code>git clean -n</code><button class="copy-btn" onclick="copy(this,'git clean -n')">copy</button></div>
-        </div>
-        <p class="hint">-n does a dry run first — use it!</p>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ─── INSPECTION ────────────────────────────── -->
-  <section class="section" id="inspection">
-    <div class="section-head">
-      <span class="section-num">06</span>
-      <div class="section-line"></div>
-      <span class="section-tag">INSPECTION</span>
-    </div>
-    <div class="section-title">Inspection &amp; History</div>
-    <div class="section-desc">// explore commits and blame the right person</div>
-    <div class="grid" style="margin-top:28px;">
-
-      <div class="card" data-search="log history commits graph oneline decorate">
-        <div class="card-top"><span class="cmd-name"><span>git</span> log</span><span class="badge b-essential">Essential</span></div>
-        <p class="card-desc">Explore the full commit history</p>
-        <div class="code-block">
-          <div class="code-row"><span class="prompt">$</span><code>git log --oneline</code><button class="copy-btn" onclick="copy(this,'git log --oneline')">copy</button></div>
-          <div class="code-row"><span class="prompt">$</span><code>git log --graph --all --oneline</code><button class="copy-btn" onclick="copy(this,'git log --graph --all --oneline')">copy</button></div>
-          <div class="code-row"><span class="prompt">$</span><code>git log --author="Name" --since="2w"</code><button class="copy-btn" onclick="copy(this,'git log --author=&quot;Name&quot; --since=&quot;2w&quot;')">copy</button></div>
-        </div>
-        <p class="hint">combine flags for powerful log filtering</p>
-      </div>
-
-      <div class="card" data-search="show commit diff object details">
-        <div class="card-top"><span class="cmd-name"><span>git</span> show</span><span class="badge b-utility">Utility</span></div>
-        <p class="card-desc">Inspect a commit, tag, or object</p>
-        <div class="code-block">
-          <div class="code-row"><span class="prompt">$</span><code>git show abc1234</code><button class="copy-btn" onclick="copy(this,'git show abc1234')">copy</button></div>
-          <div class="code-row"><span class="prompt">$</span><code>git show HEAD:file.js</code><button class="copy-btn" onclick="copy(this,'git show HEAD:file.js')">copy</button></div>
-        </div>
-        <p class="hint">shows patch + commit info</p>
-      </div>
-
-      <div class="card" data-search="blame author who wrote line annotation">
-        <div class="card-top"><span class="cmd-name"><span>git</span> blame</span><span class="badge b-utility">Utility</span></div>
-        <p class="card-desc">See who last modified each line</p>
-        <div class="code-block">
-          <div class="code-row"><span class="prompt">$</span><code>git blame file.js</code><button class="copy-btn" onclick="copy(this,'git blame file.js')">copy</button></div>
-          <div class="code-row"><span class="prompt">$</span><code>git blame -L 10,20 file.js</code><button class="copy-btn" onclick="copy(this,'git blame -L 10,20 file.js')">copy</button></div>
-        </div>
-        <p class="hint">-L limits blame to a line range</p>
-      </div>
-
-      <div class="card" data-search="bisect binary search bug regression find">
-        <div class="card-top"><span class="cmd-name"><span>git</span> bisect</span><span class="badge b-advanced">Advanced</span></div>
-        <p class="card-desc">Binary-search history to find a bad commit</p>
-        <div class="code-block">
-          <div class="code-row"><span class="prompt">$</span><code>git bisect start</code><button class="copy-btn" onclick="copy(this,'git bisect start')">copy</button></div>
-          <div class="code-row"><span class="prompt">$</span><code>git bisect good v1.0.0</code><button class="copy-btn" onclick="copy(this,'git bisect good v1.0.0')">copy</button></div>
-          <div class="code-row"><span class="prompt">$</span><code>git bisect bad HEAD</code><button class="copy-btn" onclick="copy(this,'git bisect bad HEAD')">copy</button></div>
-        </div>
-        <p class="hint">git bisect reset to end the session</p>
-      </div>
-
-      <div class="card" data-search="shortlog summary stats contributors authors">
-        <div class="card-top"><span class="cmd-name"><span>git</span> shortlog</span><span class="badge b-utility">Utility</span></div>
-        <p class="card-desc">Summarize commits per author</p>
-        <div class="code-block">
-          <div class="code-row"><span class="prompt">$</span><code>git shortlog -sn</code><button class="copy-btn" onclick="copy(this,'git shortlog -sn')">copy</button></div>
-        </div>
-        <p class="hint">-s=count only, -n=sort by count</p>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ─── ADVANCED ──────────────────────────────── -->
-  <section class="section" id="advanced">
-    <div class="section-head">
-      <span class="section-num">07</span>
-      <div class="section-line"></div>
-      <span class="section-tag">ADVANCED</span>
-    </div>
-    <div class="section-title">Advanced Operations</div>
-    <div class="section-desc">// for when you mean business</div>
-    <div class="grid" style="margin-top:28px;">
-
-      <div class="card" data-search="reflog reference log recover lost deleted">
-        <div class="card-top"><span class="cmd-name"><span>git</span> reflog</span><span class="badge b-recovery">Recovery</span></div>
-        <p class="card-desc">See every HEAD movement — nothing is truly lost</p>
-        <div class="code-block">
-          <div class="code-row"><span class="prompt">$</span><code>git reflog</code><button class="copy-btn" onclick="copy(this,'git reflog')">copy</button></div>
-          <div class="code-row"><span class="prompt">$</span><code>git checkout HEAD@{2}</code><button class="copy-btn" onclick="copy(this,'git checkout HEAD@{2}')">copy</button></div>
-        </div>
-        <p class="hint">your ultimate undo — expires after 90 days</p>
-      </div>
-
-      <div class="card" data-search="worktree multiple checkouts parallel">
-        <div class="card-top"><span class="cmd-name"><span>git</span> worktree</span><span class="badge b-advanced">Advanced</span></div>
-        <p class="card-desc">Check out multiple branches simultaneously</p>
-        <div class="code-block">
-          <div class="code-row"><span class="prompt">$</span><code>git worktree add ../hotfix hotfix/v2</code><button class="copy-btn" onclick="copy(this,'git worktree add ../hotfix hotfix/v2')">copy</button></div>
-          <div class="code-row"><span class="prompt">$</span><code>git worktree list</code><button class="copy-btn" onclick="copy(this,'git worktree list')">copy</button></div>
-        </div>
-        <p class="hint">one repo, many working trees</p>
-      </div>
-
-      <div class="card" data-search="archive export zip tar snapshot release">
-        <div class="card-top"><span class="cmd-name"><span>git</span> archive</span><span class="badge b-utility">Utility</span></div>
-        <p class="card-desc">Export a snapshot as zip or tarball</p>
-        <div class="code-block">
-          <div class="code-row"><span class="prompt">$</span><code>git archive --format=zip HEAD > out.zip</code><button class="copy-btn" onclick="copy(this,'git archive --format=zip HEAD > out.zip')">copy</button></div>
-        </div>
-        <p class="hint">no .git folder — clean deploy artifact</p>
-      </div>
-
-      <div class="card" data-search="gc garbage collect optimize prune">
-        <div class="card-top"><span class="cmd-name"><span>git</span> gc</span><span class="badge b-utility">Utility</span></div>
-        <p class="card-desc">Clean up and compress repository internals</p>
-        <div class="code-block">
-          <div class="code-row"><span class="prompt">$</span><code>git gc --aggressive</code><button class="copy-btn" onclick="copy(this,'git gc --aggressive')">copy</button></div>
-        </div>
-        <p class="hint">run on large repos to reduce disk size</p>
-      </div>
-
-      <div class="card" data-search="hooks scripts automate pre-commit pre-push">
-        <div class="card-top"><span class="cmd-name"><span>git</span> hooks</span><span class="badge b-advanced">Advanced</span></div>
-        <p class="card-desc">Run scripts automatically on Git events</p>
-        <div class="code-block">
-          <div class="code-row"><span class="prompt">$</span><code>ls .git/hooks/</code><button class="copy-btn" onclick="copy(this,'ls .git/hooks/')">copy</button></div>
-          <div class="code-row"><span class="prompt">$</span><code>chmod +x .git/hooks/pre-commit</code><button class="copy-btn" onclick="copy(this,'chmod +x .git/hooks/pre-commit')">copy</button></div>
-        </div>
-        <p class="hint">use husky or lefthook for team hooks</p>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ─── PATCHING ──────────────────────────────── -->
-  <section class="section" id="patching">
-    <div class="section-head">
-      <span class="section-num">08</span>
-      <div class="section-line"></div>
-      <span class="section-tag">PATCHING</span>
-    </div>
-    <div class="section-title">Patching</div>
-    <div class="section-desc">// create and apply patch files</div>
-    <div class="grid" style="margin-top:28px;">
-
-      <div class="card" data-search="apply patch file diff">
-        <div class="card-top"><span class="cmd-name"><span>git</span> apply</span><span class="badge b-utility">Utility</span></div>
-        <p class="card-desc">Apply a patch file without committing</p>
-        <div class="code-block">
-          <div class="code-row"><span class="prompt">$</span><code>git apply changes.patch</code><button class="copy-btn" onclick="copy(this,'git apply changes.patch')">copy</button></div>
-          <div class="code-row"><span class="prompt">$</span><code>git apply --check changes.patch</code><button class="copy-btn" onclick="copy(this,'git apply --check changes.patch')">copy</button></div>
-        </div>
-        <p class="hint">--check tests if patch will apply cleanly</p>
-      </div>
-
-      <div class="card" data-search="format-patch create generate email send">
-        <div class="card-top"><span class="cmd-name"><span>git</span> format-patch</span><span class="badge b-advanced">Advanced</span></div>
-        <p class="card-desc">Generate patch files from commit range</p>
-        <div class="code-block">
-          <div class="code-row"><span class="prompt">$</span><code>git format-patch main</code><button class="copy-btn" onclick="copy(this,'git format-patch main')">copy</button></div>
-          <div class="code-row"><span class="prompt">$</span><code>git format-patch -1 HEAD</code><button class="copy-btn" onclick="copy(this,'git format-patch -1 HEAD')">copy</button></div>
-        </div>
-        <p class="hint">-1 creates patch for just the last commit</p>
-      </div>
-
-      <div class="card" data-search="am apply mailbox patch author preserve">
-        <div class="card-top"><span class="cmd-name"><span>git</span> am</span><span class="badge b-advanced">Advanced</span></div>
-        <p class="card-desc">Apply a patch as a commit with author info</p>
-        <div class="code-block">
-          <div class="code-row"><span class="prompt">$</span><code>git am changes.patch</code><button class="copy-btn" onclick="copy(this,'git am changes.patch')">copy</button></div>
-        </div>
-        <p class="hint">preserves commit authorship — better than apply</p>
-      </div>
-
-    </div>
-  </section>
-
-  <div style="height:60px;"></div>
-</main>
-</div>
-
-<!-- TOAST -->
-<div class="toast" id="toast">copied to clipboard</div>
-
-<script>
-// ─── CANVAS GRID BACKGROUND ───────────────────────────
-(function(){
-  const c = document.getElementById('bgCanvas');
-  const ctx = c.getContext('2d');
-  function resize(){c.width=window.innerWidth;c.height=window.innerHeight;}
-  resize();
-  window.addEventListener('resize',resize);
-  function draw(){
-    ctx.clearRect(0,0,c.width,c.height);
-    ctx.strokeStyle='rgba(255,255,255,0.04)';
-    ctx.lineWidth=1;
-    const gap=60;
-    for(let x=0;x<=c.width;x+=gap){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,c.height);ctx.stroke();}
-    for(let y=0;y<=c.height;y+=gap){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(c.width,y);ctx.stroke();}
-  }
-  draw();
-  window.addEventListener('resize',draw);
-})();
-
-// ─── COPY ────────────────────────────────────────────
-function copy(btn, text){
-  const decoded = text.replace(/&quot;/g,'"').replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>');
-  if(navigator.clipboard && navigator.clipboard.writeText){
-    navigator.clipboard.writeText(decoded).then(function(){showOK(btn);}).catch(function(){fallback(decoded,btn);});
-  } else {
-    fallback(decoded,btn);
-  }
-}
-function fallback(text,btn){
-  const ta=document.createElement('textarea');
-  ta.value=text;ta.style.position='fixed';ta.style.opacity='0';
-  document.body.appendChild(ta);ta.select();
-  try{document.execCommand('copy');showOK(btn);}catch(e){}
-  document.body.removeChild(ta);
-}
-function showOK(btn){
-  const orig=btn.textContent;
-  btn.textContent='✓ done';btn.classList.add('ok');
-  const t=document.getElementById('toast');
-  t.classList.add('on');
-  setTimeout(function(){btn.textContent=orig;btn.classList.remove('ok');t.classList.remove('on');},1800);
-}
-
-// ─── SEARCH ──────────────────────────────────────────
-document.getElementById('searchBox').addEventListener('input',function(){
-  const q=this.value.trim().toLowerCase();
-  let total=0;
-  document.querySelectorAll('.command-section,.section').forEach(function(sec){
-    let vis=0;
-    sec.querySelectorAll('.card').forEach(function(card){
-      const match=!q||(card.dataset.search||'').includes(q)||card.textContent.toLowerCase().includes(q);
-      card.style.display=match?'':'none';
-      if(match)vis++;
-    });
-    sec.style.display=vis>0?'':'none';
-    total+=vis;
-  });
-  document.getElementById('noResults').style.display=total===0?'block':'none';
-});
-
-// ─── KEYBOARD ────────────────────────────────────────
-document.addEventListener('keydown',function(e){
-  if((e.metaKey||e.ctrlKey)&&e.key==='k'){e.preventDefault();document.getElementById('searchBox').focus();}
-  if(e.key==='Escape'){const s=document.getElementById('searchBox');s.value='';s.dispatchEvent(new Event('input'));}
-});
-
-// ─── ACTIVE NAV ──────────────────────────────────────
-function setActive(el){
-  setTimeout(function(){
-    document.querySelectorAll('.nav-item').forEach(function(n){n.classList.remove('active');});
-    el.classList.add('active');
-    if(window.innerWidth<=760)document.querySelector('.sidebar').classList.remove('open');
-  },10);
-}
-
-window.addEventListener('scroll',function(){
-  const sections=document.querySelectorAll('section[id]');
-  let cur='';
-  sections.forEach(function(s){if(window.scrollY>=s.offsetTop-200)cur=s.id;});
-  document.querySelectorAll('.nav-item').forEach(function(n){
-    n.classList.toggle('active',n.getAttribute('href')==='#'+cur);
-  });
-},{passive:true});
-
-// ─── CLOSE SIDEBAR ON CLICK OUTSIDE (MOBILE) ─────────
-document.getElementById('main').addEventListener('click',function(){
-  if(window.innerWidth<=760)document.querySelector('.sidebar').classList.remove('open');
-});
-</script>
+  <script src="script.js"></script>
 </body>
 </html>
