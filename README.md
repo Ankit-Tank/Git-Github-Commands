@@ -1,666 +1,168 @@
 <div align="center">
 
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<!--                    ANIMATED HEADER BANNER                      -->
-<!-- ═══════════════════════════════════════════════════════════════ -->
+<img src="https://capsule-render.vercel.app/api?type=waving&height=230&color=0:0f172a,50:1d4ed8,100:22d3ee&text=Git%20%7C%20GitHub%20Commands%20Playbook&fontSize=42&fontColor=ffffff&animation=fadeIn&fontAlignY=38&desc=Practical%20reference%20for%20real-world%20version-control%20workflows&descSize=16&descAlignY=58" width="100%" alt="Git and GitHub Commands Playbook" />
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=200&section=header&text=Git%20%26%20GitHub&fontSize=60&fontColor=fff&animation=twinkling&fontAlignY=35&desc=The%20Complete%20Command%20Reference%20Guide&descAlignY=55&descSize=20&descColor=aaa" width="100%"/>
+<br />
 
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<!--                      LIVE WEBSITE BADGE                        -->
-<!-- ═══════════════════════════════════════════════════════════════ -->
+[![Live Site](https://img.shields.io/badge/Live%20Docs-Netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white)](https://git-github-commands.netlify.app/)
+[![License](https://img.shields.io/github/license/Ankit-Tank/Git-Github-Commands?style=for-the-badge&color=2563eb)](./LICENSE)
+[![Last Commit](https://img.shields.io/github/last-commit/Ankit-Tank/Git-Github-Commands?style=for-the-badge&color=0ea5e9)](https://github.com/Ankit-Tank/Git-Github-Commands/commits/main)
+[![Repo Stars](https://img.shields.io/github/stars/Ankit-Tank/Git-Github-Commands?style=for-the-badge&color=f59e0b)](https://github.com/Ankit-Tank/Git-Github-Commands/stargazers)
 
-<br/>
-
-[![🌐 Live Website](https://img.shields.io/badge/🌐%20Live%20Website-git--github--commands.netlify.app-00C7B7?style=for-the-badge&logo=netlify&logoColor=white&labelColor=0a0a0a)](https://git-github-commands.netlify.app/)
-
-<br/>
-
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<!--                       TYPING ANIMATION                         -->
-<!-- ═══════════════════════════════════════════════════════════════ -->
-
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&pause=1000&color=F05032&center=true&vCenter=true&width=600&lines=35%2B+Git+Commands+Explained;17+GitHub+Features+Covered;100%2B+Real-World+Examples;From+Beginner+to+Advanced)](https://git.io/typing-svg)
-
-<br/>
-
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<!--                       BADGES ROW 1                             -->
-<!-- ═══════════════════════════════════════════════════════════════ -->
-
-![GIT](https://img.shields.io/badge/GIT-F05032?style=for-the-badge&logo=git&logoColor=white)
-![GitHub](https://img.shields.io/badge/GITHUB-181717?style=for-the-badge&logo=github&logoColor=white)
-![Markdown](https://img.shields.io/badge/MARKDOWN-000000?style=for-the-badge&logo=markdown&logoColor=white)
-![Netlify](https://img.shields.io/badge/NETLIFY-00C7B7?style=for-the-badge&logo=netlify&logoColor=white)
-![License](https://img.shields.io/badge/LICENSE-MIT-F7DF1E?style=for-the-badge&logoColor=black)
-
-<br/>
-
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<!--                       STATS BADGES                             -->
-<!-- ═══════════════════════════════════════════════════════════════ -->
-
-![Commands](https://img.shields.io/badge/Commands-35%2B-F05032?style=flat-square&logo=git&logoColor=white)
-![GitHub Features](https://img.shields.io/badge/GitHub%20Features-17-181717?style=flat-square&logo=github&logoColor=white)
-![Examples](https://img.shields.io/badge/Examples-100%2B-00b894?style=flat-square)
-![Files](https://img.shields.io/badge/Reference%20Files-75%2B-6c5ce7?style=flat-square)
-![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen?style=flat-square&logo=github)
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=21&duration=2500&pause=900&color=38BDF8&center=true&vCenter=true&width=820&lines=40%2B+Git+commands+organized+by+workflow;GitHub+basics%2C+CLI+and+Actions+in+one+place;Cheatsheets%2C+comparisons%2C+glossary+and+guided+paths)](https://git.io/typing-svg)
 
 </div>
 
 ---
 
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<!--                   QUICK WEBSITE ACCESS                         -->
-<!-- ═══════════════════════════════════════════════════════════════ -->
+## 🚀 What this repository is
+
+A production-grade learning and reference hub for **Git** and **GitHub**.
+It is designed for fast lookup, structured learning, and practical team workflows.
 
 <div align="center">
-
-## 🌐 Access the Full Website
-
-<a href="https://git-github-commands.netlify.app/">
-  <img src="https://img.shields.io/badge/━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━-00C7B7?style=for-the-badge" alt="divider"/>
-</a>
-
-> ✨ **Browse the complete guide online at →** **[git-github-commands.netlify.app](https://git-github-commands.netlify.app/)**
->
-> Fully formatted, searchable, and mobile-friendly. No cloning required.
-
+  <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1500&q=80" alt="Developer workstation" width="90%" />
 </div>
 
 ---
 
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<!--                        ASCII ART INTRO                         -->
-<!-- ═══════════════════════════════════════════════════════════════ -->
+## ✨ Why this README is different
 
-```
-╔═══════════════════════════════════════════════════════════════════╗
-║                                                                   ║
-║    ██████╗ ██╗████████╗    ██╗  ██╗██╗   ██╗██████╗              ║
-║   ██╔════╝ ██║╚══██╔══╝    ██║  ██║██║   ██║██╔══██╗             ║
-║   ██║  ███╗██║   ██║       ███████║██║   ██║██████╔╝             ║
-║   ██║   ██║██║   ██║       ██╔══██║██║   ██║██╔══██╗             ║
-║   ╚██████╔╝██║   ██║       ██║  ██║╚██████╔╝██████╔╝             ║
-║    ╚═════╝ ╚═╝   ╚═╝       ╚═╝  ╚═╝ ╚═════╝ ╚═════╝             ║
-║                                                                   ║
-║         The definitive Git & GitHub reference — by devs,         ║
-║                      for devs. Zero fluff.                        ║
-╚═══════════════════════════════════════════════════════════════════╝
-```
+- Clean, structured documentation map using the actual repository architecture
+- Fast navigation for beginners, contributors, and advanced users
+- Learning-first flow: **Setup → Daily workflow → Collaboration → Recovery → Automation**
+- Includes live badges, animated header/text, and visual sections
 
 ---
 
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<!--                      TABLE OF CONTENTS                         -->
-<!-- ═══════════════════════════════════════════════════════════════ -->
+## 🧭 Quick navigation
 
-<details>
-<summary><b>📋 Table of Contents — Click to Expand</b></summary>
-
-<br/>
-
-- [🌐 Access the Full Website](#-access-the-full-website)
-- [📌 What's Inside](#-whats-inside)
-- [⚡ Quick Access — Start Here](#-quick-access--start-here)
-- [📂 Repository Structure](#-repository-structure)
-- [🚀 Git Commands Reference](#-git-commands-reference)
-  - [01 — Setup](#-01--setup)
-  - [02 — Staging & Committing](#-02--staging--committing)
-  - [03 — Branching & Merging](#-03--branching--merging)
-  - [04 — Remote Workflows](#-04--remote-workflows)
-  - [05 — Undoing Changes](#-05--undoing-changes)
-  - [06 — Inspection & History](#-06--inspection--history)
-  - [07 — Advanced](#-07--advanced)
-  - [08 — Patching](#-08--patching)
-- [🐙 GitHub Reference](#-github-reference)
-  - [01 — GitHub Basics](#-01--github-basics)
-  - [02 — GitHub CLI](#-02--github-cli-gh)
-  - [03 — GitHub Actions](#-03--github-actions)
-- [📖 Learning Path](#-learning-path)
-- [🛠️ How to Use](#%EF%B8%8F-how-to-use)
-- [🤝 Contributing](#-contributing)
-- [📄 License](#-license)
-
-</details>
+| Need | Open this |
+|---|---|
+| Fast command lookup | [CHEATSHEET.md](./CHEATSHEET.md) |
+| Command differences (`merge vs rebase`, etc.) | [COMPARISONS.md](./COMPARISONS.md) |
+| Real end-to-end scenarios | [WORKFLOWS.md](./WORKFLOWS.md) |
+| Terminology and concepts | [GLOSSARY.md](./GLOSSARY.md) |
+| Contribution rules | [CONTRIBUTING.md](./CONTRIBUTING.md) |
+| Hosted documentation | [git-github-commands.netlify.app](https://git-github-commands.netlify.app/) |
 
 ---
 
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<!--                       WHAT'S INSIDE                            -->
-<!-- ═══════════════════════════════════════════════════════════════ -->
+## 🗂️ Repository map
 
-## 📌 What's Inside
-
-> A **complete, opinionated reference guide** for every Git command and GitHub feature a developer encounters — from first `git init` to advanced CI/CD pipelines.
-
-Each command lives in its **own dedicated file**, structured consistently:
-
-```
-📌 What it does  →  🔧 Syntax  →  ✅ Examples (beginner → advanced)
-📋 Comparison tables  →  ⚠️ Common mistakes  →  🔗 Related commands
-```
-
-<div align="center">
-
-|  📦  | Content | Count |
-|:----:|:--------|------:|
-| 🔧 | Git command files | **35+** |
-| 🐙 | GitHub feature guides | **17** |
-| 📚 | Reference files (Cheatsheet, Glossary, etc.) | **6** |
-| 📁 | Subfolder index files | **8** |
-| 💡 | Real-world examples | **100+** |
-| 📄 | Total files in repo | **75+** |
-
-</div>
-
----
-
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<!--                      QUICK ACCESS TABLE                        -->
-<!-- ═══════════════════════════════════════════════════════════════ -->
-
-## ⚡ Quick Access — Start Here
-
-> **Bookmark these.** They save you the most time.
-
-<div align="center">
-
-| 🔗 Resource | 💬 Best Used When... |
-|:------------|:---------------------|
-| [🗒️ **CHEATSHEET.md**](./CHEATSHEET.md) | You need a command fast — all 35+ on one page |
-| [⚖️ **COMPARISONS.md**](./COMPARISONS.md) | Confused between `merge vs rebase`, `reset vs revert`, `fetch vs pull` |
-| [🔄 **WORKFLOWS.md**](./WORKFLOWS.md) | Need a step-by-step guide for a real-world scenario |
-| [📖 **GLOSSARY.md**](./GLOSSARY.md) | A Git term is confusing you — 50+ terms explained |
-| [📚 **Git Overview**](./git/overview.MD) | Starting fresh — understand Git's internals first |
-| [🌐 **Live Website**](https://git-github-commands.netlify.app/) | Browsing on mobile or want a cleaner reading experience |
-
-</div>
-
----
-
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<!--                    REPO STRUCTURE TREE                         -->
-<!-- ═══════════════════════════════════════════════════════════════ -->
-
-## 📂 Repository Structure
-
-<details>
-<summary><b>🗂️ Click to view full folder tree</b></summary>
-
-<br/>
-
-```
+```text
 Git-Github-Commands/
-│
-├── 📁 git/                                    # 35+ Git command files
-│   ├── overview.MD                            # Git theory, architecture & internals
-│   │
-│   ├── 📁 01-setup/                           # ← Start here
-│   │   ├── config.md                          # Set name, email, editor, aliases
-│   │   ├── init.md                            # Initialize a repository
-│   │   ├── clone.md                           # Copy remote repo locally
-│   │   └── help.md                            # Get help for any command
-│   │
-│   ├── 📁 02-staging-and-committing/          # ← Daily workflow
-│   │   ├── add.md                             # Stage changes
-│   │   ├── commit.md                          # Save a snapshot
-│   │   ├── status.md                          # Check working tree
-│   │   ├── diff.md                            # See line-by-line changes
-│   │   ├── mv.md                              # Move/rename tracked files
-│   │   └── rm.md                              # Remove from tracking
-│   │
-│   ├── 📁 03-branching-and-merging/           # ← Team collaboration
-│   │   ├── branch.md
-│   │   ├── checkout.md
-│   │   ├── switch.md
-│   │   ├── merge.md
-│   │   ├── rebase.md
-│   │   ├── cherry-pick.md
-│   │   └── tag.md
-│   │
-│   ├── 📁 04-remote-workflow/                 # ← Working with remotes
-│   │   ├── remote.md
-│   │   ├── push.md
-│   │   ├── pull.md
-│   │   ├── fetch.md
-│   │   └── submodule.md
-│   │
-│   ├── 📁 05-undoing-changes/                 # ← Recovering from mistakes
-│   │   ├── reset.md
-│   │   ├── revert.md
-│   │   ├── restore.md
-│   │   ├── stash.md
-│   │   └── clean.md
-│   │
-│   ├── 📁 06-inspection-and-history/          # ← Debugging & auditing
-│   │   ├── log.md
-│   │   ├── show.md
-│   │   ├── blame.md
-│   │   ├── bisect.md
-│   │   └── shortlog.md
-│   │
-│   ├── 📁 07-advanced/                        # ← Power user tools
-│   │   ├── reflog.md
-│   │   ├── worktree.md
-│   │   ├── archive.md
-│   │   ├── gc.md
-│   │   └── hooks.md
-│   │
-│   └── 📁 08-patching/                        # ← Email-based workflows
-│       ├── apply.md
-│       ├── format-patch.md
-│       └── am.md
-│
-├── 📁 github/                                 # GitHub features & CLI
-│   ├── 📁 01-github-basics/                   # Fork, PR, Issues, Stars, Profile README
-│   ├── 📁 02-github-cli/                      # gh auth, gh repo, gh pr, gh issue, gh gist
-│   └── 📁 03-github-actions/                  # Overview, YAML syntax, 8 workflow templates
-│
-├── 🗒️  CHEATSHEET.md                          # All commands, one page
-├── ⚖️  COMPARISONS.md                          # 10 command comparisons
-├── 🔄  WORKFLOWS.md                           # 10 real-world workflows
-├── 📖  GLOSSARY.md                            # 50+ Git terms with visuals
-├── 🤝  CONTRIBUTING.md                        # Contribution guidelines
-├── .gitignore                                 # OS, editor, temp files
-├── LICENSE
+├── git/
+│   ├── overview.MD
+│   ├── 01-setup/
+│   ├── 02-staging-and-committing/
+│   ├── 03-branching-and-merging/
+│   ├── 04-remote-workflow/
+│   ├── 05-undoing-changes/
+│   ├── 06-inspection-and-history/
+│   ├── 07-advanced/
+│   └── 08-patching/
+├── github/
+│   ├── overview.md
+│   ├── 01-github-basics/
+│   ├── 02-github-cli/
+│   └── 03-github-actions/
+├── CHEATSHEET.md
+├── COMPARISONS.md
+├── WORKFLOWS.md
+├── GLOSSARY.md
+├── CONTRIBUTING.md
 └── README.md
 ```
 
-</details>
+---
+
+## 📚 Documentation architecture
+
+### Git track
+
+| Module | Focus | Entry point |
+|---|---|---|
+| 01 Setup | First-time configuration and repo initialization | [git/01-setup/_index.md](./git/01-setup/_index.md) |
+| 02 Staging & Committing | Daily add/commit/status workflow | [git/02-staging-and-committing/_index.md](./git/02-staging-and-committing/_index.md) |
+| 03 Branching & Merging | Team collaboration, branch strategy, history flow | [git/03-branching-and-merging/_index.md](./git/03-branching-and-merging/_index.md) |
+| 04 Remote Workflow | Syncing, pulling, pushing, remotes, submodules | [git/04-remote-workflow/_index.md](./git/04-remote-workflow/_index.md) |
+| 05 Undoing Changes | Reset, restore, revert, stash, safe recovery | [git/05-undoing-changes/_index.md](./git/05-undoing-changes/_index.md) |
+| 06 Inspection & History | Logs, blame, bisect, historical debugging | [git/06-inspection-and-history/_index.md](./git/06-inspection-and-history/_index.md) |
+| 07 Advanced | Reflog, hooks, worktree, maintenance tools | [git/07-advanced/_index.md](./git/07-advanced/_index.md) |
+| 08 Patching | Patch-based workflows (`apply`, `format-patch`, `am`) | [git/08-patching/_index.md](./git/08-patching/_index.md) |
+
+### GitHub track
+
+| Module | Focus | Entry point |
+|---|---|---|
+| 01 GitHub Basics | Forks, pull requests, issues, stars/watch | [github/01-github-basics/_index.md](./github/01-github-basics/_index.md) |
+| 02 GitHub CLI | Terminal-first GitHub workflows using `gh` | [github/02-github-cli/_index.md](./github/02-github-cli/_index.md) |
+| 03 GitHub Actions | Workflow syntax and automation templates | [github/03-github-actions/_index.md](./github/03-github-actions/_index.md) |
 
 ---
 
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<!--                   GIT COMMANDS REFERENCE                       -->
-<!-- ═══════════════════════════════════════════════════════════════ -->
+## 🎯 Guided learning path
 
-## 🚀 Git Commands Reference
-
-<!-- ─── 01 SETUP ─────────────────────────────────────────────── -->
-
-### 📁 01 — Setup
-
-> **Configure Git and create your first repository.**
-> Start here if you're new, or revisit to set up aliases and advanced config.
-
-| Command | What it does |
-|:--------|:-------------|
-| [`git config`](./git/01-setup/config.md) | Set your username, email, default editor, and aliases |
-| [`git init`](./git/01-setup/init.md) | Initialize a new local repository |
-| [`git clone`](./git/01-setup/clone.md) | Copy a remote repository to your machine |
-| [`git help`](./git/01-setup/help.md) | Get help for any Git command |
-
-**→ [View full 01-setup folder](./git/01-setup/)**
+| Stage | Goal | Start here |
+|---|---|---|
+| Beginner | Build confidence with local Git basics | [git/overview.MD](./git/overview.MD) → [01-setup](./git/01-setup/_index.md) |
+| Intermediate | Work safely with branches and remotes | [03-branching-and-merging](./git/03-branching-and-merging/_index.md) → [04-remote-workflow](./git/04-remote-workflow/_index.md) |
+| Recovery Skills | Undo mistakes and inspect history | [05-undoing-changes](./git/05-undoing-changes/_index.md) → [06-inspection-and-history](./git/06-inspection-and-history/_index.md) |
+| Power User | Master advanced Git and automation | [07-advanced](./git/07-advanced/_index.md) → [github/03-github-actions](./github/03-github-actions/_index.md) |
 
 ---
 
-<!-- ─── 02 STAGING ────────────────────────────────────────────── -->
-
-### 📁 02 — Staging & Committing
-
-> **The core loop every developer runs every single day.**
-> Learn to stage selectively, write clean commits, and inspect your changes.
-
-| Command | What it does |
-|:--------|:-------------|
-| [`git add`](./git/02-staging-and-committing/add.md) | Stage changes for your next commit |
-| [`git commit`](./git/02-staging-and-committing/commit.md) | Save a permanent snapshot to history |
-| [`git status`](./git/02-staging-and-committing/status.md) | Check the state of your working tree |
-| [`git diff`](./git/02-staging-and-committing/diff.md) | See exact line-by-line changes |
-| [`git mv`](./git/02-staging-and-committing/mv.md) | Move or rename tracked files |
-| [`git rm`](./git/02-staging-and-committing/rm.md) | Remove files from Git tracking |
-
-**→ [View full 02-staging-and-committing folder](./git/02-staging-and-committing/)**
-
----
-
-<!-- ─── 03 BRANCHING ──────────────────────────────────────────── -->
-
-### 📁 03 — Branching & Merging
-
-> **Where real collaboration happens.**
-> Understand branches deeply — including when to merge vs rebase and how cherry-pick works.
-
-| Command | What it does |
-|:--------|:-------------|
-| [`git branch`](./git/03-branching-and-merging/branch.md) | Create, list, rename, and delete branches |
-| [`git checkout`](./git/03-branching-and-merging/checkout.md) | Switch branches or restore files (classic) |
-| [`git switch`](./git/03-branching-and-merging/switch.md) | Modern, focused way to switch branches |
-| [`git merge`](./git/03-branching-and-merging/merge.md) | Combine two branches together |
-| [`git rebase`](./git/03-branching-and-merging/rebase.md) | Rewrite commit history for a clean, linear timeline |
-| [`git cherry-pick`](./git/03-branching-and-merging/cherry-pick.md) | Apply one specific commit to another branch |
-| [`git tag`](./git/03-branching-and-merging/tag.md) | Mark release versions (v1.0, v2.3, etc.) |
-
-**→ [View full 03-branching-and-merging folder](./git/03-branching-and-merging/)**
-
----
-
-<!-- ─── 04 REMOTE ─────────────────────────────────────────────── -->
-
-### 📁 04 — Remote Workflows
-
-> **How your local code connects to the world.**
-> Push, pull, fetch, and manage remotes like a pro.
-
-| Command | What it does |
-|:--------|:-------------|
-| [`git remote`](./git/04-remote-workflow/remote.md) | Add, view, rename, and remove remote connections |
-| [`git push`](./git/04-remote-workflow/push.md) | Upload local commits to a remote repository |
-| [`git pull`](./git/04-remote-workflow/pull.md) | Download and automatically merge remote changes |
-| [`git fetch`](./git/04-remote-workflow/fetch.md) | Download remote changes without merging |
-| [`git submodule`](./git/04-remote-workflow/submodule.md) | Manage nested Git repositories inside your project |
-
-**→ [View full 04-remote-workflow folder](./git/04-remote-workflow/)**
-
----
-
-<!-- ─── 05 UNDOING ────────────────────────────────────────────── -->
-
-### 📁 05 — Undoing Changes
-
-> **Everyone breaks things. Here's how to fix them.**
-> The most important section — know these before you need them.
-
-| Command | What it does |
-|:--------|:-------------|
-| [`git reset`](./git/05-undoing-changes/reset.md) | Undo commits or unstage files (rewrites history) |
-| [`git revert`](./git/05-undoing-changes/revert.md) | Safely undo a pushed commit (keeps history clean) |
-| [`git restore`](./git/05-undoing-changes/restore.md) | Discard changes in your working directory |
-| [`git stash`](./git/05-undoing-changes/stash.md) | Temporarily shelve uncommitted work |
-| [`git clean`](./git/05-undoing-changes/clean.md) | Remove untracked files and directories |
-
-**→ [View full 05-undoing-changes folder](./git/05-undoing-changes/)**
-
----
-
-<!-- ─── 06 INSPECTION ─────────────────────────────────────────── -->
-
-### 📁 06 — Inspection & History
-
-> **Understand exactly what happened and when.**
-> These are your debugging and auditing tools.
-
-| Command | What it does |
-|:--------|:-------------|
-| [`git log`](./git/06-inspection-and-history/log.md) | View commit history with formatting options |
-| [`git show`](./git/06-inspection-and-history/show.md) | Inspect a specific commit in detail |
-| [`git blame`](./git/06-inspection-and-history/blame.md) | See who changed each line of a file and when |
-| [`git bisect`](./git/06-inspection-and-history/bisect.md) | Binary search through history to find a bug |
-| [`git shortlog`](./git/06-inspection-and-history/shortlog.md) | Summarize commit history by author |
-
-**→ [View full 06-inspection-and-history folder](./git/06-inspection-and-history/)**
-
----
-
-<!-- ─── 07 ADVANCED ───────────────────────────────────────────── -->
-
-### 📁 07 — Advanced
-
-> **Power tools for power users.**
-> Most developers never explore these — the ones who do have a serious advantage.
-
-| Command | What it does |
-|:--------|:-------------|
-| [`git reflog`](./git/07-advanced/reflog.md) | Recover "lost" commits — your ultimate safety net |
-| [`git worktree`](./git/07-advanced/worktree.md) | Check out multiple branches simultaneously |
-| [`git archive`](./git/07-advanced/archive.md) | Export the repo as a `.zip` or `.tar` file |
-| [`git gc`](./git/07-advanced/gc.md) | Clean up and optimize the repository database |
-| [`git hooks`](./git/07-advanced/hooks.md) | Run custom scripts on Git events automatically |
-
-**→ [View full 07-advanced folder](./git/07-advanced/)**
-
----
-
-<!-- ─── 08 PATCHING ───────────────────────────────────────────── -->
-
-### 📁 08 — Patching
-
-> **Email-based and file-based patch workflows.**
-> Essential for contributing to open-source projects that use mailing lists.
-
-| Command | What it does |
-|:--------|:-------------|
-| [`git apply`](./git/08-patching/apply.md) | Apply changes from a patch file |
-| [`git format-patch`](./git/08-patching/format-patch.md) | Create `.patch` files from commits |
-| [`git am`](./git/08-patching/am.md) | Apply a patch file preserving original author info |
-
-**→ [View full 08-patching folder](./git/08-patching/)**
-
----
-
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<!--                     GITHUB REFERENCE                           -->
-<!-- ═══════════════════════════════════════════════════════════════ -->
-
-## 🐙 GitHub Reference
-
-<!-- ─── 01 GITHUB BASICS ──────────────────────────────────────── -->
-
-### 📁 01 — GitHub Basics
-
-> **The platform features every developer uses daily.**
-
-| Topic | Description |
-|:------|:------------|
-| [🍴 Fork](./github/01-github-basics/fork.md) | Copy someone's repo to your own account |
-| [🔀 Pull Request](./github/01-github-basics/pull-request.md) | Propose, review, and merge code changes |
-| [🐛 Issues](./github/01-github-basics/issues.md) | Track bugs, features, and discussions |
-| [⭐ Stars & Watch](./github/01-github-basics/star-and-watch.md) | Bookmark repos and manage notifications |
-| [🪪 Profile README](./github/01-github-basics/profile-readme.md) | Design your GitHub profile landing page |
-
-**→ [View full 01-github-basics folder](./github/01-github-basics/)**
-
----
-
-<!-- ─── 02 GITHUB CLI ─────────────────────────────────────────── -->
-
-### 📁 02 — GitHub CLI (`gh`)
-
-> **Do everything GitHub can do — right from your terminal.**
-
-| Command | Description |
-|:--------|:------------|
-| [`gh auth`](./github/02-github-cli/gh-auth.md) | Login and authenticate with GitHub |
-| [`gh repo`](./github/02-github-cli/gh-repo.md) | Create, clone, and fork repos from terminal |
-| [`gh pr`](./github/02-github-cli/gh-pr.md) | Create and manage Pull Requests |
-| [`gh issue`](./github/02-github-cli/gh-issue.md) | Create and manage Issues |
-| [`gh gist`](./github/02-github-cli/gh-gist.md) | Create and manage Gists |
-
-**→ [View full 02-github-cli folder](./github/02-github-cli/)**
-
----
-
-<!-- ─── 03 GITHUB ACTIONS ─────────────────────────────────────── -->
-
-### 📁 03 — GitHub Actions
-
-> **Automate everything — tests, deploys, releases, and more.**
-> Includes 8 ready-to-use workflow templates.
-
-| Topic | Description |
-|:------|:------------|
-| [🔍 Overview](./github/03-github-actions/overview.md) | What Actions is and how it works conceptually |
-| [📝 Workflow Syntax](./github/03-github-actions/workflow-syntax.md) | Complete YAML syntax reference |
-| [⚙️ Common Workflows](./github/03-github-actions/common-workflows.md) | 8 battle-tested, copy-paste ready workflows |
-
-**→ [View full 03-github-actions folder](./github/03-github-actions/)**
-
----
-
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<!--                      LEARNING PATH                             -->
-<!-- ═══════════════════════════════════════════════════════════════ -->
-
-## 📖 Learning Path
-
-> Follow this sequence for the fastest progression from zero to advanced.
-
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                     🔰  BEGINNER TRACK                          │
-├─────────────────────────────────────────────────────────────────┤
-│  Step 1  →  Git Overview      — Understand the "why" of Git     │
-│  Step 2  →  01-setup          — Configure Git on your machine   │
-│  Step 3  →  02-staging        — Learn the daily add/commit loop  │
-│  Step 4  →  03-branching      — Work with branches safely       │
-└─────────────────────────────────────────────────────────────────┘
-                              ↓
-┌─────────────────────────────────────────────────────────────────┐
-│                    📈  INTERMEDIATE TRACK                        │
-├─────────────────────────────────────────────────────────────────┤
-│  Step 5  →  04-remote         — Collaborate with teams          │
-│  Step 6  →  COMPARISONS.md   — Understand the trade-offs        │
-│  Step 7  →  WORKFLOWS.md     — Apply real-world scenarios       │
-│  Step 8  →  GitHub Basics    — Master the platform              │
-└─────────────────────────────────────────────────────────────────┘
-                              ↓
-┌─────────────────────────────────────────────────────────────────┐
-│                      🚀  ADVANCED TRACK                          │
-├─────────────────────────────────────────────────────────────────┤
-│  Step 9  →  05-undoing        — Recover from any mistake        │
-│  Step 10 →  07-advanced       — Unlock power features           │
-│  Step 11 →  GitHub CLI        — Go fully terminal-native        │
-│  Step 12 →  GitHub Actions   — Build full CI/CD pipelines       │
-└─────────────────────────────────────────────────────────────────┘
-```
-
----
-
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<!--                       HOW TO USE                               -->
-<!-- ═══════════════════════════════════════════════════════════════ -->
-
-## 🛠️ How to Use
-
-### Option 1 — Browse Online *(Recommended)*
-
-Visit the live site — fully formatted, searchable, no setup needed:
-
-```
-🌐  https://git-github-commands.netlify.app/
-```
-
-### Option 2 — Clone Locally
+## ⚡ Start using in 60 seconds
 
 ```bash
-# Clone the repository
 git clone https://github.com/Ankit-Tank/Git-Github-Commands.git
-
-# Navigate into it
 cd Git-Github-Commands
 ```
 
-### Quick Lookup Guide
+Then choose one:
 
-```bash
-# Need a command fast?
-→  Open CHEATSHEET.md
-
-# Confused between two similar commands?
-→  Open COMPARISONS.md
-
-# Need a step-by-step guide?
-→  Open WORKFLOWS.md
-
-# Don't know what a Git term means?
-→  Open GLOSSARY.md
-
-# Want to understand Git from scratch?
-→  Start with git/overview.MD
-```
-
-Each subfolder contains an `index.md` with a command overview, navigation links, and how each command relates to the others.
+- Open [CHEATSHEET.md](./CHEATSHEET.md) for quick command recall
+- Follow [WORKFLOWS.md](./WORKFLOWS.md) for complete practical scenarios
+- Use [COMPARISONS.md](./COMPARISONS.md) when two commands feel similar
 
 ---
 
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<!--                      CONTRIBUTING                              -->
-<!-- ═══════════════════════════════════════════════════════════════ -->
+## 🧪 Coverage snapshot
+
+| Area | Includes |
+|---|---|
+| Git foundation | setup, staging, branching, remotes |
+| Safety & recovery | reset/revert/restore/stash/reflog |
+| Deep inspection | log/show/blame/bisect/shortlog |
+| Advanced usage | hooks, worktree, archive, gc, patching |
+| GitHub workflows | basics, CLI operations, GitHub Actions |
+| Reference assets | cheatsheet, glossary, comparisons, workflow playbooks |
+
+---
 
 ## 🤝 Contributing
 
-> Found a mistake? Want to add a command or improve an explanation? Contributions are welcome!
+Contributions are welcome and encouraged.
 
-```bash
-# 1. Fork this repository
-
-# 2. Create a feature branch
-git switch -c improve/command-name
-
-# 3. Make your changes following the existing file template
-
-# 4. Commit with a clear message
-git commit -m "docs: improve git rebase explanation with visual diagram"
-
-# 5. Push and open a Pull Request
-git push origin improve/command-name
-```
-
-See **[CONTRIBUTING.md](./CONTRIBUTING.md)** for the full template, style guide, and review process.
+1. Read [CONTRIBUTING.md](./CONTRIBUTING.md)
+2. Create a focused branch
+3. Keep docs consistent with existing structure
+4. Open a pull request with clear change context
 
 ---
-
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<!--                    WHAT'S COVERED                              -->
-<!-- ═══════════════════════════════════════════════════════════════ -->
-
-## 📊 What's Covered at a Glance
-
-<div align="center">
-
-| Category | Commands / Topics |
-|:---------|:-----------------|
-| ⚙️ Setup | `config` · `init` · `clone` · `help` |
-| 📦 Staging | `add` · `commit` · `status` · `diff` · `mv` · `rm` |
-| 🌿 Branching | `branch` · `checkout` · `switch` · `merge` · `rebase` · `cherry-pick` · `tag` |
-| 🌐 Remote | `remote` · `push` · `pull` · `fetch` · `submodule` |
-| ↩️ Undoing | `reset` · `revert` · `restore` · `stash` · `clean` |
-| 🔍 Inspection | `log` · `show` · `blame` · `bisect` · `shortlog` |
-| ⚡ Advanced | `reflog` · `worktree` · `archive` · `gc` · `hooks` |
-| 🩹 Patching | `apply` · `format-patch` · `am` |
-| 🐙 GitHub | Fork · PR · Issues · Stars · Profile · CLI · Actions |
-
-</div>
-
----
-
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<!--                         LICENSE                                -->
-<!-- ═══════════════════════════════════════════════════════════════ -->
 
 ## 📄 License
 
-This project is licensed under the [MIT License](LICENSE) — free to use, share, and adapt.
+This project is licensed under the [MIT License](./LICENSE).
 
 ---
-
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<!--                       FOOTER WAVE                              -->
-<!-- ═══════════════════════════════════════════════════════════════ -->
 
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=120&section=footer" width="100%"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&height=120&section=footer&color=0:0f172a,50:1d4ed8,100:22d3ee" width="100%" alt="footer" />
 
----
-
-[![Stars](https://img.shields.io/github/stars/Ankit-Tank/Git-Github-Commands?style=social)](https://github.com/Ankit-Tank/Git-Github-Commands/stargazers)
-[![Forks](https://img.shields.io/github/forks/Ankit-Tank/Git-Github-Commands?style=social)](https://github.com/Ankit-Tank/Git-Github-Commands/network/members)
-[![Watchers](https://img.shields.io/github/watchers/Ankit-Tank/Git-Github-Commands?style=social)](https://github.com/Ankit-Tank/Git-Github-Commands/watchers)
-
-<br/>
-
-**⭐ Star this repo if it helped you — it keeps the motivation going!**
-
-<br/>
-
-[![🌐 Visit Website](https://img.shields.io/badge/🌐%20Visit%20Website-git--github--commands.netlify.app-00C7B7?style=for-the-badge&logo=netlify&logoColor=white)](https://git-github-commands.netlify.app/)
-
-<br/>
-
-Made with ❤️ and a lot of `git commit -m "fix: everything"` by [**Ankit-Tank**](https://github.com/Ankit-Tank)
-
-[⬆️ Back to top](#-git--github)
+**Built with ❤️ by [Ankit-Tank](https://github.com/Ankit-Tank)**  
+If this helped you, consider giving the repo a ⭐
 
 </div>
