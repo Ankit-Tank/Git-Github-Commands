@@ -4,7 +4,7 @@
 <!--                    ANIMATED HEADER BANNER                      -->
 <!-- ═══════════════════════════════════════════════════════════════ -->
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=200&section=header&text=Git%20%26%20GitHub&fontSize=60&fontColor=fff&animation=twinkling&fontAlignY=35&desc=The%20Complete%20Command%20Reference%20Guide&descAlignY=55&descSize=20&descColor=aaa" width="100%"/>
+<img src="./header.svg" width="100%"/>
 
 <!-- ═══════════════════════════════════════════════════════════════ -->
 <!--                      LIVE WEBSITE BADGE                        -->
@@ -257,6 +257,8 @@ Git-Github-Commands/
 │   ├── 📁 02-github-cli/                      # gh auth, gh repo, gh pr, gh issue, gh gist
 │   └── 📁 03-github-actions/                  # Overview, YAML syntax, 8 workflow templates
 │
+├── 🖼️  header.svg                             # Header banner (self-hosted)
+├── 🖼️  footer.svg                             # Footer wave (self-hosted)
 ├── 🗒️  CHEATSHEET.md                          # All commands, one page
 ├── ⚖️  COMPARISONS.md                          # 10 command comparisons
 ├── 🔄  WORKFLOWS.md                           # 10 real-world workflows
@@ -641,7 +643,7 @@ This project is licensed under the [MIT License](LICENSE) — free to use, share
 
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=120&section=footer" width="100%"/>
+<img src="./footer.svg" width="100%"/>
 
 ---
 
