@@ -83,9 +83,9 @@
 ║         ██║   ██║██║   ██║       ██╔══██║██║   ██║██╔══██╗        ║
 ║         ╚██████╔╝██║   ██║       ██║  ██║╚██████╔╝██████╔╝        ║
 ║         ╚═════╝ ╚═╝   ╚═╝       ╚═╝  ╚═╝ ╚═════╝ ╚═════╝          ║
-║                                                               ║
-║         The definitive Git & GitHub reference — by devs,      ║
-║                      for devs. Zero fluff.                    ║
+║                                                                   ║
+║         The definitive Git & GitHub reference — by devs,          ║
+║                      for devs. Zero fluff.                        ║
 ╚═══════════════════════════════════════════════════════════════════╝
 ```
 
